@@ -22,20 +22,20 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-white text-lg font-semibold">
-              Logo
+            <a href="#" className="text-xl font-bold">
+              Dressx
             </a>
           </div>
 
           {/* Hamburger Menu (for mobile) */}
           <div className="md:hidden">
             <button
-              className="text-white hover:text-gray-300 focus:outline-none focus:text-gray-300"
+              className="hover:text-gray-300 focus:outline-none focus:text-gray-300"
               onClick={toggleMenu}
             >
               <svg
@@ -62,7 +62,7 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex">
-            <div className="text-white text-lg font-medium flex gap-5">
+            <div className="text-lg font-medium flex gap-5">
               {navItems}
             </div>
           </div>
@@ -99,10 +99,10 @@ const Navbar = () => {
         {/* Hamburger Menu (for mobile) */}
         {isOpen && (
           <div className="md:hidden">
-            <div className="bg-gray-800 w-1/2 h-screen fixed top-0 right-0">
+            <div className="shadow-2xl w-1/2 h-screen fixed top-0 right-0">
               <div className="flex items-center justify-end px-4 py-5">
                 <button
-                  className="text-white hover:text-gray-300 focus:outline-none focus:text-gray-300"
+                  className="hover:text-gray-300 focus:outline-none focus:text-gray-300"
                   onClick={closeMenu}
                 >
                   <svg
@@ -118,7 +118,7 @@ const Navbar = () => {
                   </svg>
                 </button>
               </div>
-              <div className="text-white text-lg font-medium flex flex-col gap-5 px-4 py-2">
+              <div className="text-lg font-medium flex flex-col gap-5 px-4 py-2">
                 {navItems}
               </div>
             </div>
