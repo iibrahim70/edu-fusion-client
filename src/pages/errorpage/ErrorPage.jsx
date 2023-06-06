@@ -1,6 +1,6 @@
 import React from 'react'
 import Lottie from 'lottie-react';
-import errorAnimation from '../../assets/animation/2.json'
+import errorAnimation from '../../assets/animation/errorpage/2.json'
 import { Link, useRouteError } from 'react-router-dom'
 // import useTitle from '../../components/hooks/useTitle';
 
