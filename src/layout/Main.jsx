@@ -8,7 +8,9 @@ const Main = () => {
   return (
     <div>
       <Navbar/>
-      <Outlet/>
+      <div className='w-[90%] mx-auto'>
+        <Outlet />
+      </div>
       <Footer/>
     </div>
   );
