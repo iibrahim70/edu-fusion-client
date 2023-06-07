@@ -1,9 +1,10 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import signupAnimation from '../../assets/animation/register/signup.json'; 
 import Lottie from 'lottie-react';
+import signupAnimation from '../../assets/animation/register/signup.json';
+import { Link } from 'react-router-dom';
 
-const RegistrationForm = () => {
+const Signup = () => {
   const {
     register,
     handleSubmit,
@@ -15,11 +16,11 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className='flex gap-x-5 my-20'>
-      <div className='flex-1'>
+    <div className='flex gap-10'>
+      <div className='flex-1 w-full'>
         <Lottie animationData={signupAnimation} loop={true} />
       </div>
-      <div className='flex-1 shadow-2xl p-10'>
+      <div className='flex-1 w-full shadow-xl p-10'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label className="block mb-1 font-medium">Name</label>
@@ -115,6 +116,10 @@ const RegistrationForm = () => {
               {...register('address')}
             />
           </div>
+          
+          <div className="mb-4">
+            <Link to="/signin" className="text-blue-500">Already Have an account</Link>
+          </div>
 
           <button type="submit" className="btn btn-primary w-full">Submit</button>
         </form>
@@ -123,4 +128,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default Signup;
