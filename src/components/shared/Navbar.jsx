@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <nav className="shadow-2xl">
-      <div className="container mx-auto px-4">
+      <div className="w-[90%] mx-auto">
         <div className="flex justify-between items-center h-16">
           {/* Hamburger Menu (for mobile) */}
           {isOpen && (
