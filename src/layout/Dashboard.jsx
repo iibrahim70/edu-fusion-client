@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
   
-  const admin = true;
+  const admin = false;
   const isStudent = false; 
 
   return (
@@ -11,7 +11,7 @@ const Dashboard = () => {
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         
-        <div className="drawer-content flex flex-col items-center justify-center bg-green-200">
+        <div className="drawer-content flex flex-col items-center justify-center">
           {/* Page content here */}
           <Outlet/>
           {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
@@ -27,7 +27,7 @@ const Dashboard = () => {
             <li><Link>Manage Classes</Link></li> </> : 
             
             <>
-            <li><Link>Add Class</Link></li>
+            <li><Link to='/dashboard/add-class'>Add Class</Link></li>
             <li><Link>My Class</Link></li>
             </> }
 
