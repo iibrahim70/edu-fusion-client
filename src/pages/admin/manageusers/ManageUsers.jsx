@@ -1,8 +1,12 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2'
+import useApi from '../../../hooks/useApi';
 
 const ManageUsers = () => {
+
+  const { makeRequest } = useApi();
+
   const {data: users = [], refetch} = useQuery(['users'], async () => {
     const res = await fetch('http://localhost:3000/users')
     return res.json(); 
@@ -11,31 +15,25 @@ const ManageUsers = () => {
   const handleMakeAdmin = user => {
     Swal.fire({
       title: 'Are you sure?',
-      text: `Do you want to make ${user.name} an admin?`,
+      text: `Do You Want To Make ${user.name} An Admin?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes',
+      confirmButtonText: 'Admin',
       cancelButtonText: 'Cancel'
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/users/admin/${user._id}`, {
-          method: 'PATCH'
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.modifiedCount) {
-              refetch();
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: `${user.name} is an Admin now!`,
-                showConfirmButton: false,
-                timer: 1500
-              });
-            }
+        makeRequest(`users/admin/${user._id}`, 'PATCH', () => {
+          refetch();
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: `${user.name} Is An Admin Now!`,
+            showConfirmButton: false,
+            timer: 1500
           });
+        });
       }
     });
   };
@@ -43,31 +41,25 @@ const ManageUsers = () => {
   const handleMakeInstructor = user => {
     Swal.fire({
       title: 'Are you sure?',
-      text: `Do you want to make ${user.name} an instructor?`,
+      text: `Do You Want To Make ${user.name} An Instructor?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes',
+      confirmButtonText: 'Instructor',
       cancelButtonText: 'Cancel'
     }).then(result => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/instructor/admin/${user._id}`, {
-          method: 'PATCH'
-        })
-          .then(res => res.json())
-          .then(data => {
-            if (data.modifiedCount) {
-              refetch();
-              Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: `${user.name} is an Instructor now!`,
-                showConfirmButton: false,
-                timer: 1500
-              });
-            }
+        makeRequest(`users/instructor/${user._id}`, 'PATCH', () => {
+          refetch();
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: `${user.name} Is An Instructor Now!`,
+            showConfirmButton: false,
+            timer: 1500
           });
+        });
       }
     });
   };

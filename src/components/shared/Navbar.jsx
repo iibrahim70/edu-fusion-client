@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+// import { ThemeContext } from '../../providers/ThemeProvider';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { user, Logout } = useAuth();
+  // const { theme, toggleTheme, getThemeColors } = useContext(ThemeContext);
+  // const themeColors = getThemeColors();
 
   const handleLogout = () => {
     Logout()
@@ -26,6 +29,10 @@ const Navbar = () => {
       <Link to='/instructors'>Instructors</Link>
       <Link>Classes</Link>
       <Link to='/dashboard'>Dashboard</Link>
+      {/* <button onClick={toggleTheme}>
+      helo
+      </button>
+      <p>Current Theme: {theme}</p> */}
     </>
   );
 
