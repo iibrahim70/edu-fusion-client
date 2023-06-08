@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "image": "https://example.com/image1.jpg",
+    "name": "Instructor 1",
+    "email": "instructor1@example.com",
+    "numClasses": 5,
+    "classesTaken": [
+      "Class A",
+      "Class B",
+      "Class C"
+    ],
+    "seeClassesLink": "/instructors/1/classes"
+  },
+  {
+    "id": 2,
+    "image": "https://example.com/image2.jpg",
+    "name": "Instructor 2",
+    "email": "instructor2@example.com",
+    "numClasses": 3,
+    "classesTaken": [
+      "Class D",
+      "Class E"
+    ],
+    "seeClassesLink": "/instructors/2/classes"
+  },
+  {
+    "id": 3,
+    "image": "https://example.com/image3.jpg",
+    "name": "Instructor 3",
+    "email": "instructor3@example.com",
+    "numClasses": 8,
+    "classesTaken": [
+      "Class F",
+      "Class G",
+      "Class H",
+      "Class I"
+    ],
+    "seeClassesLink": "/instructors/3/classes"
+  },
+  {
+    "id": 4,
+    "image": "https://example.com/image4.jpg",
+    "name": "Instructor 4",
+    "email": "instructor4@example.com",
+    "numClasses": 2,
+    "classesTaken": [
+      "Class J"
+    ],
+    "seeClassesLink": "/instructors/4/classes"
+  },
+  {
+    "id": 5,
+    "image": "https://example.com/image5.jpg",
+    "name": "Instructor 5",
+    "email": "instructor5@example.com",
+    "numClasses": 6,
+    "classesTaken": [
+      "Class K",
+      "Class L",
+      "Class M"
+    ],
+    "seeClassesLink": "/instructors/5/classes"
+  },
+  {
+    "id": 6,
+    "image": "https://example.com/image6.jpg",
+    "name": "Instructor 6",
+    "email": "instructor6@example.com",
+    "numClasses": 4,
+    "classesTaken": [
+      "Class N",
+      "Class O"
+    ],
+    "seeClassesLink": "/instructors/6/classes"
+  },
+  {
+    "id": 7,
+    "image": "https://example.com/image7.jpg",
+    "name": "Instructor 7",
+    "email": "instructor7@example.com",
+    "numClasses": 9,
+    "classesTaken": [
+      "Class P",
+      "Class Q",
+      "Class R",
+      "Class S"
+    ],
+    "seeClassesLink": "/instructors/7/classes"
+  },
+  {
+    "id": 8,
+    "image": "https://example.com/image8.jpg",
+    "name": "Instructor 8",
+    "email": "instructor8@example.com",
+    "numClasses": 1,
+    "classesTaken": [
+      "Class T"
+    ],
+    "seeClassesLink": "/instructors/8/classes"
+  },
+  {
+    "id": 9,
+    "image": "https://example.com/image9.jpg",
+    "name": "Instructor 9",
+    "email": "instructor9@example.com",
+    "numClasses": 7,
+    "classesTaken": [
+      "Class U",
+      "Class V",
+      "Class W",
+      "Class X"
+    ],
+    "seeClassesLink": "/instructors/9/classes"
+  },
+  {
+    "id": 10,
+    "image": "https://example.com/image10.jpg",
+    "name": "Instructor 10",
+    "email": "instructor10@example.com",
+    "numClasses": 3,
+    "classesTaken": [
+      "Class Y",
+      "Class Z"
+    ],
+    "seeClassesLink": "/instructors/10/classes"
+  }
+]

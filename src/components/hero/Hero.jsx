@@ -7,20 +7,22 @@ import heroImageFour from '../../assets/hero/4.avif';
 
 const MyCarousel = () => {
   return (
-    <Carousel>
-      <div style={{ height: '100vh' }}>
-        <img src={heroImageOne} />
-      </div>
-      <div style={{ height: '100vh' }}>
-        <img src={heroImageTwo} />
-      </div>
-      <div style={{ height: '100vh' }}>
-        <img src={heroImageThree} />
-      </div>
-      <div style={{ height: '100vh' }}>
-        <img src={heroImageFour} />
-      </div>
-    </Carousel>
+    <div className='my-10'>
+      <Carousel>
+        <div style={{ height: '100vh' }}>
+          <img src={heroImageOne} />
+        </div>
+        <div style={{ height: '100vh' }}>
+          <img src={heroImageTwo} />
+        </div>
+        <div style={{ height: '100vh' }}>
+          <img src={heroImageThree} />
+        </div>
+        <div style={{ height: '100vh' }}>
+          <img src={heroImageFour} />
+        </div>
+      </Carousel>
+    </div>
   );
 };
 
