@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
   
-  const admin = false;
+  const admin = true;
   const isStudent = false; 
 
   return (
@@ -24,11 +24,11 @@ const Dashboard = () => {
 
             {admin? <>
             <li><Link to='/dashboard/manage-users'>Manage Users</Link></li>
-            <li><Link>Manage Classes</Link></li> </> : 
+            <li><Link to='/dashboard/manage-classes'>Manage Classes</Link></li> </> : 
             
             <>
             <li><Link to='/dashboard/add-class'>Add Class</Link></li>
-            <li><Link>My Class</Link></li>
+            <li><Link>My Classes</Link></li>
             </> }
 
             

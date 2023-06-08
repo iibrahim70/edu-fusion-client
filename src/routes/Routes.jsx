@@ -7,8 +7,9 @@ import Signup from "../pages/signup/Signup";
 import Signin from "../pages/singin/Signin";
 import Instructors from "../pages/instructors/Instructors";
 import Dashboard from "../layout/Dashboard";
-import ManageUsers from "../pages/manageusers/ManageUsers";
-import AddClass from "../pages/addclass/AddClass";
+import ManageUsers from "../pages/admin/manageusers/ManageUsers";
+import AddClass from "../pages/instructor/addclass/AddClass";
+import ManageClasses from "../pages/admin/manageclasses/ManageClasses";
 
 
 export const router = createBrowserRouter([
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: 'manage-users',
         element: <ManageUsers />,
+      },
+      {
+        path: 'manage-classes',
+        element: <ManageClasses />,
       },
       {
         path: 'add-class',

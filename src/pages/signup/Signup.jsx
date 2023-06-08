@@ -114,11 +114,11 @@ const Signup = () => {
 
 
             <div className="mb-4">
-              <label className="block mb-1 font-medium">Photo URL</label>
-              <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" {...register('photoURL', { required: true })}/>
-              {errors.photoURL && (
+              <label className="block mb-1 font-medium">Picture</label>
+              <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" type="file" {...register('picture', { required: true })}/>
+              {errors.picture && (
                 <span className="text-red-500 text-sm">
-                  Photo URL is required
+                  Picture is required
                 </span>
               )}
             </div>
