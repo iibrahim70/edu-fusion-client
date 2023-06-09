@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-import useApi from '../../../hooks/useApi';
+import useApi from '../../../../hooks/useApi';
 import Swal from 'sweetalert2';
 
 
@@ -67,7 +67,7 @@ const ManageClasses = () => {
 
   return (
     <div className='w-full p-20'>
-      <h1 className='text-2xl text-center pb-5 font-bold'>Available Classes {classes?.length}</h1>
+      <h1 className='text-2xl text-center pb-5 font-bold'>Available Classes: {classes?.length}</h1>
 
       <div className='grid grid-cols-2 gap-10'>
         {classes.map((item, index) => <div className="shadow-xl">

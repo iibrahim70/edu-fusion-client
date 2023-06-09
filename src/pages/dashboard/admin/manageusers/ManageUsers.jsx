@@ -1,7 +1,7 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2'
-import useApi from '../../../hooks/useApi';
+import useApi from '../../../../hooks/useApi';
 
 const ManageUsers = () => {
 

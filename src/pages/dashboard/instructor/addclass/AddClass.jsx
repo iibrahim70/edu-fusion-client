@@ -1,8 +1,8 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import useAuth from '../../../hooks/useAuth';
-import useToast from '../../../hooks/useToast';
+import useToast from '../../../../hooks/useToast';
+import useAuth from '../../../../hooks/useAuth';
 
 const AddClass = () => {
   const { user } = useAuth();
