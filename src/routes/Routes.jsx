@@ -7,9 +7,10 @@ import Signup from "../pages/signup/Signup";
 import Signin from "../pages/singin/Signin";
 import Instructors from "../pages/instructors/Instructors";
 import Dashboard from "../layout/Dashboard";
-import ManageUsers from "../pages/admin/manageusers/ManageUsers";
-import AddClass from "../pages/instructor/addclass/AddClass";
-import ManageClasses from "../pages/admin/manageclasses/ManageClasses";
+import ManageUsers from "../pages/dashboard/admin/manageusers/ManageUsers";
+import AddClass from "../pages/dashboard/instructor/addclass/AddClass";
+import ManageClasses from "../pages/dashboard/admin/manageclasses/ManageClasses";
+import MyClasses from "../pages/dashboard/instructor/myclasses/MyClasses";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,7 @@ export const router = createBrowserRouter([
     path: '/dashboard',
     element: <Dashboard/>, 
     children: [
+      // admin only
       {
         path: 'manage-users',
         element: <ManageUsers />,
@@ -48,9 +50,15 @@ export const router = createBrowserRouter([
         path: 'manage-classes',
         element: <ManageClasses />,
       },
+
+      // instructor only 
       {
         path: 'add-class',
         element: <AddClass />,
+      },
+      {
+        path: 'my-classes',
+        element: <MyClasses />,
       },
     ]
   }
