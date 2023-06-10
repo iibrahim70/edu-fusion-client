@@ -45,7 +45,7 @@ export const router = createBrowserRouter([
   }, 
   {
     path: '/dashboard',
-    element: <PrivateRoute><Dashboard /></PrivateRoute>, 
+    element: <Dashboard />, 
     children: [
       // admin only
       {
