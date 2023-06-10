@@ -34,6 +34,7 @@ const MyClasses = () => {
               <p>Price: ${item?.price}</p>
               <p>Status: {item?.status}</p>
               {item?.enrollStudent > 0 && <p>Enroll Student: {item?.enrollStudent}</p>}
+              {item?.feedback !== null && <p>Feedback: {item?.feedback}</p>}
             </div>
           </div>
         ))}
