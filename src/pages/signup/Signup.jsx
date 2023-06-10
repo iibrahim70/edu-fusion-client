@@ -5,39 +5,66 @@ import signupAnimation from '../../assets/animation/register/signup.json';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../../components/sociallogin/SocialLogin';
+import { useMutation } from '@tanstack/react-query';
 
 const Signup = () => {
-
+  const { createUser, updateUserProfile } = useAuth();
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const password = watch('password', '');
-  const { createUser, updateUserProfile } = useAuth();  
-  
-  const onSubmit = user => {
-    const { name, email, password, photoURL } = user;
 
-    createUser(email, password)
-      .then(res => {
-        const user = res.user; 
+  const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
+  const image_hosting_Url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`;
 
-        updateUserProfile(name, photoURL)
-          .then(() => {
+  const mutation = useMutation(async user => {
+    try {
+      const formData = new FormData();
+      formData.append('image', user.picture[0]);
 
-            const saveUser = { name: user.name, email: user.email, role: 'student' };
-            fetch('http://localhost:3000/users', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(saveUser)
-            })
-              .then(res => res.json())
-              .then(data => {
-                if(data.insertedId){
-                  console.log('user updated successfully');
-                }
-              })
-          })
-          .catch(err => console.log(err))
-      })
-      .catch(err => console.error(err));    
+      const res = await fetch(image_hosting_Url, {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        const imgUrl = data.data.display_url;
+        const { name, email, password } = user;
+
+        const res = await createUser(email, password);
+        const newUser = res.user;
+
+        await updateUserProfile(name, imgUrl);
+
+        const saveUser = {
+          name: newUser.displayName,
+          email: newUser.email,
+          role: 'student',
+          gender: user.gender,
+          phoneNumber: user.phoneNumber,
+          address: user.address,
+          picture: imgUrl
+        };
+        
+        const response = await fetch('http://localhost:3000/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(saveUser)
+        });
+
+        const responseData = await response.json();
+
+        if (responseData.insertedId) {
+          console.log('User updated successfully');
+        }
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  const onSubmit = data => {
+    mutation.mutate(data);
   };
 
   return (
@@ -112,17 +139,6 @@ const Signup = () => {
               )}
             </div>
 
-
-            <div className="mb-4">
-              <label className="block mb-1 font-medium">Picture</label>
-              <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" type="file" {...register('picture', { required: true })}/>
-              {errors.picture && (
-                <span className="text-red-500 text-sm">
-                  Picture is required
-                </span>
-              )}
-            </div>
-
             <div className="mb-4">
               <label className="block mb-1 font-medium">Gender</label>
               <select className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" {...register('gender', { required: true })}>
@@ -140,7 +156,7 @@ const Signup = () => {
 
             <div className="mb-4">
               <label className="block mb-1 font-medium">Phone Number</label>
-              <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" {...register('phoneNumber', { required: true })} />
+              <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" type='number' {...register('phoneNumber', { required: true })} />
               {errors.phoneNumber && (
                 <span className="text-red-500 text-sm">
                   Number is required
@@ -154,6 +170,16 @@ const Signup = () => {
               {errors.address && (
                 <span className="text-red-500 text-sm">
                   Address is required
+                </span>
+              )}
+            </div>
+
+            <div className="mb-4">
+              <label className="block mb-1 font-medium">Picture</label>
+              <input className="w-full py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" type="file" {...register('picture', { required: true })} />
+              {errors.picture && (
+                <span className="text-red-500 text-sm">
+                  Picture is required
                 </span>
               )}
             </div>

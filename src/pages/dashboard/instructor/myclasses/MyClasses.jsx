@@ -20,7 +20,7 @@ const MyClasses = () => {
 
   return (
     <div className='w-full p-20'>
-      <h1 className='text-2xl text-center pb-5 font-bold'>My Total Classes: {myclasses?.length}</h1>
+      <h1 className='text-center pb-5'>My Total Classes: {myclasses?.length}</h1>
 
       <div className='grid grid-cols-2 gap-10'>
         {myclasses.map((item, index) => (
@@ -29,10 +29,11 @@ const MyClasses = () => {
               <img className='h-[90%] w-full' src={item?.imageUrl} alt='Classes' />
             </figure>
             <div className='px-5 space-y-2 py-5'>
-              <h2 className='font-medium'>{item?.className}</h2>
+              <h2>{item?.className}</h2>
               <p>Seats: {item?.availableSeats}</p>
               <p>Price: ${item?.price}</p>
               <p>Status: {item?.status}</p>
+              {item?.enrollStudent > 0 && <p>Enroll Student: {item?.enrollStudent}</p>}
             </div>
           </div>
         ))}
