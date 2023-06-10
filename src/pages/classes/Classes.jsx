@@ -13,23 +13,21 @@ const Classes = () => {
   }
 
   return (
-    <>
-      <div className='grid grid-cols-3 gap-10 my-20'>
-        {classes.map(item => (
-          <div key={item._id} className="shadow-xl">
-            <figure>
-              <img className='h-[90%] w-full' src={item?.imageUrl} alt="Classes" />
-            </figure>
-            <div className="px-5 space-y-2 py-5">
-              <h2>{item?.className}</h2>
-              <h4>Instructor: {item?.instructorName}</h4>
-              <p>Seats: {item?.availableSeats}</p>
-              <p>Price: ${item?.price}</p>
-            </div>
+    <div className='grid grid-cols-3 gap-10 my-20'>
+      {classes.map(item => (
+        <div key={item._id} className="shadow-xl">
+          <figure>
+            <img className='h-[90%] w-full' src={item?.imageUrl} alt="Classes" />
+          </figure>
+          <div className="px-5 space-y-2 py-5">
+            <h2>{item?.className}</h2>
+            <h4>Instructor: {item?.instructorName}</h4>
+            <p>Seats: {item?.availableSeats}</p>
+            <p>Price: ${item?.price}</p>
           </div>
-        ))}
-      </div>
-    </>
+        </div>
+      ))}
+    </div>
   );
 };
 

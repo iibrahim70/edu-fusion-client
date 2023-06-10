@@ -46,7 +46,13 @@ const ManageClasses = () => {
       if (result.isConfirmed) {
         approveClass.mutateAsync(item._id)
           .then(() => {
-            showToast(`${item.className} Approved Successfully!`);
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: `${item.className} Approved Successfully!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
             refetch()
           })
           .catch((error) => {
@@ -71,7 +77,13 @@ const ManageClasses = () => {
       if (result.isConfirmed) {
         denyClass.mutateAsync(item._id)
           .then(() => {
-            showToast(`${item.className} Denied Successfully!`);
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: `${item.className} Denied Successfully!`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
             refetch()
           })
           .catch((error) => {

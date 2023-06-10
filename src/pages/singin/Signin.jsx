@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Lottie from 'lottie-react';
 import signinAnimation from '../../assets/animation/register/signin.json';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../../components/sociallogin/SocialLogin';
 
 const Signin = () => {
   
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || '/'; 
+
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { Login } = useAuth();  
 
@@ -23,14 +27,15 @@ const Signin = () => {
       .then(res => {
         const user = res.user; 
         console.log(user);
+        navigate(from, { replace: true }); 
       })
       .catch(err => console.error(err));
   };
 
   return (
-    <div className='flex flex-col md:flex-row gap-10 my-10 md:my-20 md:items-center md:justify-center'>
+    <div className='flex flex-col md:flex-row-reverse gap-10 my-10 md:my-20 md:items-center md:justify-center'>
       <div className='flex-1'>
-        <Lottie animationData={signinAnimation} loop={true} />
+        <Lottie className='w-[50%] mx-auto' animationData={signinAnimation} loop={true} />
       </div>
 
       <div className='flex-1'>
@@ -69,15 +74,12 @@ const Signin = () => {
           </form>
 
           {/* toggle singup */}
-          <div className="my-5">
-            <Link to="/signup" className="text-blue-500">Create an account</Link>
+          <div className="space-y-3 mt-5 flex flex-col items-center justify-center">
+            <p>Don't Have An Account Yet? <Link to="/signup" className="text-blue-500">Signup</Link></p>
+            <SocialLogin/>
           </div>
 
-          {/* social login */}
-          <SocialLogin />
         </div>
-
-
       </div>
     </div>
   );

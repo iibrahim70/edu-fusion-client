@@ -62,16 +62,6 @@ const AddClass = () => {
     <div className='w-[70%] mx-auto my-10 md:my-20'>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
-          <label className="block mb-1 font-medium">Class Name</label>
-          <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" {...register('className', { required: true })} />
-          {errors.className && (
-            <span className="text-red-500 text-sm">
-              Class Name is required
-            </span>
-          )}
-        </div>
-
-        <div className="mb-4">
           <label className="block mb-1 font-medium">Instructor Name</label>
           <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" value={user?.displayName} readOnly />
         </div>
@@ -81,6 +71,16 @@ const AddClass = () => {
           <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" value={user?.email} readOnly />
         </div>
 
+        <div className="mb-4">
+          <label className="block mb-1 font-medium">Class Name</label>
+          <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" {...register('className', { required: true })} />
+          {errors.className && (
+            <span className="text-red-500 text-sm">
+              Class Name is required
+            </span>
+          )}
+        </div>
+        
         <div className="mb-4">
           <label className="block mb-1 font-medium">Available Seats</label>
           <input className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" type='number' {...register('availableSeats', { required: true })} />

@@ -2,13 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Lottie from 'lottie-react';
 import signupAnimation from '../../assets/animation/register/signup.json';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../../components/sociallogin/SocialLogin';
 import { useMutation } from '@tanstack/react-query';
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const password = watch('password', '');
 
@@ -33,6 +34,7 @@ const Signup = () => {
 
         const res = await createUser(email, password);
         const newUser = res.user;
+        navigate('/');
 
         await updateUserProfile(name, imgUrl);
 
@@ -71,7 +73,7 @@ const Signup = () => {
     <div className="flex flex-col md:flex-row gap-10 my-10 md:my-20 md:items-center md:justify-center">
 
       <div className="flex-1">
-        <Lottie animationData={signupAnimation} loop={true} />
+        <Lottie className='mx-auto' animationData={signupAnimation} loop={true} />
       </div>
 
       <div className="flex-1">
@@ -142,7 +144,7 @@ const Signup = () => {
             <div className="mb-4">
               <label className="block mb-1 font-medium">Gender</label>
               <select className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" {...register('gender', { required: true })}>
-                <option disabled>Select</option>
+                <option>Select</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
@@ -187,13 +189,10 @@ const Signup = () => {
             <input type="submit" className="btn btn-primary w-full" value='Submit'/>
           </form>
 
-          {/* toggle singin */}
-          <div className="my-5">
-            <Link to="/signin" className="text-blue-500">Already Have an account</Link>
+          <div className="space-y-3 mt-5 flex flex-col items-center justify-center">
+            <p>Already Have An Account? <Link to="/signin" className="text-blue-500">Signin</Link></p>
+            <SocialLogin />
           </div>
-
-          {/* social login */}
-          <SocialLogin/>
         </div>
       </div>
     </div>
