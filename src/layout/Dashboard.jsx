@@ -3,7 +3,8 @@ import { Link, Outlet } from 'react-router-dom';
 
 const Dashboard = () => {
   
-  const admin = false;
+  const admin = true;
+  // const admin = false;
   const isStudent = false; 
 
   return (

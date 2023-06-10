@@ -27,7 +27,7 @@ const Navbar = () => {
     <>
       <Link>Home</Link>
       <Link to='/instructors'>Instructors</Link>
-      <Link>Classes</Link>
+      <Link to='/classes'>Classes</Link>
       <Link to='/dashboard'>Dashboard</Link>
       {/* <button onClick={toggleTheme}>
       helo
@@ -71,7 +71,7 @@ const Navbar = () => {
 
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="text-lg font-bold">Dressx</a>
+            <a href="#" className="text-2xl font-extrabold">Dressx</a>
           </div>
 
           {/* Hamburger Menu (for mobile) */}

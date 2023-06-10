@@ -5,6 +5,7 @@ import useToast from '../../../../hooks/useToast';
 import useAuth from '../../../../hooks/useAuth';
 
 const AddClass = () => {
+  
   const { user } = useAuth();
   const { showToast } = useToast();
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
@@ -26,6 +27,8 @@ const AddClass = () => {
 
       // send data to the database
       const classesStatus = { status: 'pending' };
+      const enrollStudent = { enrollStudent: 0 };
+      const feedback = {feedback: null};
       const postData = {
         className: newClasses.className,
         instructorName: user?.displayName,
@@ -33,7 +36,9 @@ const AddClass = () => {
         availableSeats: parseInt(newClasses.availableSeats),
         price: parseFloat(newClasses.price),
         imageUrl: imgUrl,
-        ...classesStatus
+        ...classesStatus,
+        ...enrollStudent,
+        ...feedback
       };
 
       const response = await fetch('http://localhost:3000/classes', {

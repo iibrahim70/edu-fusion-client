@@ -1,99 +1,210 @@
-import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import useApi from '../../../../hooks/useApi';
+import React, { useState, useEffect } from 'react';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
-
+import clsx from 'clsx';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import useToast from '../../../../hooks/useToast';
+import { AiFillCloseSquare } from 'react-icons/ai';
 
 const ManageClasses = () => {
+  const { showToast } = useToast();
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-  const { makeRequest } = useApi();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const { data: classes = [], refetch } = useQuery(['classes'], async () => {
+    const res = await axios.get('http://localhost:3000/classes');
+    return res.data;
+  });
 
-  const {data: classes = [], refetch} = useQuery(['classes'], async () => {
-    const res = await fetch('http://localhost:3000/classes')
-    return res.json(); 
-  }) 
+  const approveClass = useMutation((itemId) =>
+    axios.put(`http://localhost:3000/classes/approve/${itemId}`)
+  );
 
-  const handleMakeApprove = item => {
+  const denyClass = useMutation((itemId) =>
+    axios.put(`http://localhost:3000/classes/deny/${itemId}`)
+  );
+
+  const submitFeedback = useMutation((data) =>
+    axios.put(`http://localhost:3000/classes/feedback/${selectedItem._id}`, {
+      feedback: data.feedback,
+    })
+  );
+
+  const handleMakeApprove = (item) => {
     Swal.fire({
       title: 'Are you sure?',
-      text: `Do You Want To Make ${item.className} Approve?`,
+      text: `Do You Want To Approve ${item.className}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Approve',
-      cancelButtonText: 'Cancel'
-    }).then(result => {
+      confirmButtonText: 'Yes, Approve!',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
       if (result.isConfirmed) {
-        makeRequest(`classes/approve/${item._id}`, 'PATCH', () => {
-          refetch();
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: `${item.className} Approved Successfully!`,
-            showConfirmButton: false,
-            timer: 1500
+        approveClass.mutateAsync(item._id)
+          .then(() => {
+            showToast(`${item.className} Approved Successfully!`);
+            refetch()
+          })
+          .catch((error) => {
+            console.error('Failed to approve class:', error);
+            showToast('Failed to approve class', 'error');
           });
-        });
       }
     });
   };
 
-  const handleMakeDeny = item => {
+  const handleMakeDeny = (item) => {
     Swal.fire({
       title: 'Are you sure?',
-      text: `Do You Want To Make ${item.className} Deny?`,
+      text: `Do You Want To Deny ${item.className}?`,
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Deny',
-      cancelButtonText: 'Cancel'
-    }).then(result => {
+      confirmButtonText: 'Yes, Deny!',
+      cancelButtonText: 'Cancel',
+    }).then((result) => {
       if (result.isConfirmed) {
-        makeRequest(`classes/deny/${item._id}`, 'PATCH', () => {
-          refetch();
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: `${item.className} Denied Successfully!`,
-            showConfirmButton: false,
-            timer: 1500
+        denyClass.mutateAsync(item._id)
+          .then(() => {
+            showToast(`${item.className} Denied Successfully!`);
+            refetch()
+          })
+          .catch((error) => {
+            console.error('Failed to deny class:', error);
+            showToast('Failed to deny class', 'error');
           });
-        });
       }
     });
+  };
+
+  const handleSelectChange = (event, itemId) => {
+    const selectedOption = event.target.value;
+    if (selectedOption === 'Approve') {
+      const item = classes.find((classItem) => classItem._id === itemId);
+      if (item.status === 'approved') return;
+      handleMakeApprove(item);
+    } else if (selectedOption === 'Deny') {
+      const item = classes.find((classItem) => classItem._id === itemId);
+      if (item.status === 'denied') return;
+      handleMakeDeny(item);
+    } else if (selectedOption === 'Feedback') {
+      const item = classes.find((classItem) => classItem._id === itemId);
+      setSelectedItem(item);
+      setIsOpen(true);
+    }
+  };
+
+  const handleClose = () => {
+    setSelectedItem(null);
+    setIsOpen(false);
+  };
+
+  const onSubmit = async (data) => {
+    try {
+      await submitFeedback.mutateAsync(data)
+        .then(() => {
+          showToast('Feedback Added Successfully!', 'success');
+          reset();
+          handleClose();
+        })
+        .catch((error) => {
+          console.error('Failed to submit feedback:', error);
+          showToast('Failed to submit feedback', 'error');
+        });
+    } catch (error) {
+      console.error('Failed to submit feedback:', error);
+      showToast('Failed to submit feedback', 'error');
+    }
   };
 
   return (
-    <div className='w-full p-20'>
-      <h1 className='text-2xl text-center pb-5 font-bold'>Available Classes: {classes?.length}</h1>
+    <div className="w-full py-20">
+      <h1 className="text-center pb-5">Available Classes: {classes.length}</h1>
 
-      <div className='grid grid-cols-2 gap-10'>
-        {classes.map((item, index) => <div className="shadow-xl">
-          <figure><img className='h-[90%] w-full' src={item?.imageUrl} alt="Classes" /></figure>
-          <div className="px-5 space-y-2 py-5">
-            <h2 className="font-medium">{item?.className}</h2>
-            <h2 className="font-medium">{item?.instructorName}</h2>
-            <h2 className="font-medium">{item?.instructorEmail}</h2>
-            <p>Seats: {item?.availableSeats}</p>
-            <p>Price: ${item?.price}</p>
-            <p>Status: {item?.status}</p>
-
-            <div className='flex justify-evenly'>
-              <button onClick={() => handleMakeApprove(item)}>Approve</button>
-              <button onClick={() => handleMakeDeny(item)}>Deny</button>
-              <button>Feedback</button>
-            </div>
-            {/* <div className="flex justify-end pr-5 pb-2"> */}
-              {/* <Link to={`/toydetails/${_id}`} className="btn-primary">Details</Link> */}
-            {/* </div> */}
-          </div>
-        </div>)}
+      <div className="overflow-x-auto">
+        <table className="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Class Image</th>
+              <th>Class Name</th>
+              <th>Instructor Name</th>
+              <th>Instructor Email</th>
+              <th>Available Seats</th>
+              <th>Price</th>
+              <th>Action</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {classes.map((item, index) => (
+              <tr key={item._id}>
+                <td>{index + 1}</td>
+                <td>
+                  <div className="flex items-center space-x-3">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12">
+                        <img src={item.imageUrl} alt="Classes Image" />
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>{item.className}</td>
+                <td>{item.instructorName}</td>
+                <td>{item.instructorEmail}</td>
+                <td>{item.availableSeats}</td>
+                <td>${item.price}</td>
+                <td>
+                  <select
+                    className="w-full py-2 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]"
+                    onChange={(event) => handleSelectChange(event, item._id)}
+                  >
+                    <option>Select</option>
+                    <option disabled={item.status === 'approved' || item.status === 'denied'}>
+                      Approve
+                    </option>
+                    <option disabled={item.status === 'approved' || item.status === 'denied'}>
+                      Deny
+                    </option>
+                    <option>Feedback</option>
+                  </select>
+                </td>
+                <td className="capitalize">{item.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
+
+      {selectedItem && <>
+        <div onClick={handleClose} className={clsx('fixed w-full h-full top-0 right-0 bottom-0 left-0 z-[1000] bg-white/20 backdrop-blur-lg',isOpen ? 'opacity-100 visible' : 'opacity-0 invisible')}/>
+
+        <div className={clsx('fixed w-full md:w-1/2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-10 bg-white shadow-xl z-[1001]',isOpen ? 'opacity-100 visible' : 'opacity-0 invisible')}>
+          <div className="flex justify-end">
+            <button onClick={handleClose}><AiFillCloseSquare /></button>
+          </div>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="w-[70%] mx-auto">
+            <div className="mb-4">
+              <label className="block mb-1 font-medium">Feedback</label>
+              <textarea rows="4" className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]" {...register('feedback', { required: true })}/>
+              {errors.feedback && (
+                <span className="text-red-500 text-sm">This field is required</span>
+              )}
+            </div>
+
+            <input className="btn-primary w-full" type="submit" value="Feedback" />
+          </form>
+        </div>
+        </>
+      }
     </div>
   );
 };
 
 export default ManageClasses;
-

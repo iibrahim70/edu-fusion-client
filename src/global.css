@@ -1,18 +1,39 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800&display=swap');
 
 *{
   font-family: 'Nunito Sans', sans-serif;
+  /* background-color: #F8F7FF; */
+  color: #000814;
+}
+
+h1 {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 500;
 }
 
 .t-row > th {
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
 }
 .t-row > td {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center capitalize lg:text-base lg:px-6 md:px-4 px-3 lg:py-3 py-2 font-medium text-white transition hover:drop-shadow-2xl rounded border-none shadow-xl md:mb-0 bg-[#2ECC71] hover:bg-green-500 duration-700;
+  @apply inline-flex items-center justify-center capitalize lg:text-base lg:px-6 md:px-4 px-3 lg:py-3 py-2 font-medium text-white transition hover:drop-shadow-2xl rounded border-none shadow-xl md:mb-0 bg-[#4D4376] hover:bg-[#5E548E] duration-700;
+}
+
+.disabled-button {
+  @apply inline-flex items-center justify-center capitalize lg:text-base lg:px-6 md:px-4 px-3 lg:py-3 py-2 font-medium text-white transition rounded border-none shadow-xl md:mb-0 bg-[#ddd] duration-700 cursor-not-allowed;
 }
