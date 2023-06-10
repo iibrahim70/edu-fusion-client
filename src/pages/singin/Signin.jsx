@@ -6,6 +6,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BsEyeFill, BsEyeSlashFill } from 'react-icons/bs';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../../components/sociallogin/SocialLogin';
+import useToast from '../../hooks/useToast';
 
 const Signin = () => {
   
@@ -15,6 +16,7 @@ const Signin = () => {
 
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { Login } = useAuth();  
+  const { showToast } = useToast();
 
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -28,6 +30,7 @@ const Signin = () => {
         const user = res.user; 
         console.log(user);
         navigate(from, { replace: true }); 
+        showToast('User Signed In Successfully !');
       })
       .catch(err => console.error(err));
   };

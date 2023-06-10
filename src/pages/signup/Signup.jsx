@@ -6,9 +6,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../../components/sociallogin/SocialLogin';
 import { useMutation } from '@tanstack/react-query';
+import useToast from '../../hooks/useToast';
+
 
 const Signup = () => {
+
   const { createUser, updateUserProfile } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const password = watch('password', '');
@@ -35,6 +39,7 @@ const Signup = () => {
         const res = await createUser(email, password);
         const newUser = res.user;
         navigate('/');
+        showToast('User Created Successfully !');
 
         await updateUserProfile(name, imgUrl);
 
