@@ -16,7 +16,7 @@ const Instructors = () => {
       {instructors.map(item => (
         <div key={item._id} className="shadow-xl">
           <figure>
-            <img className='h-[90%] w-full' src={item?.image} alt="Instructor Image" />
+            <img className='h-[90%] w-full' src={item?.picture} alt="Instructor Image" />
           </figure>
           <div className="px-5 space-y-2 py-5">
             <h2>{item?.name}</h2>
