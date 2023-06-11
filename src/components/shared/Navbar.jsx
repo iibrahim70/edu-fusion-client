@@ -72,7 +72,7 @@ const Navbar = () => {
               </div>
             </div>
             : 
-            <Link className='btn-primary' to='/signin'>Signin</Link>}
+            <Link className='primary-button' to='/signin'>Signin</Link>}
         </div>
       </div>
     </>

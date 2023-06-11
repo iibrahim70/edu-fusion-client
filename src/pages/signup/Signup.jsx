@@ -191,7 +191,7 @@ const Signup = () => {
               )}
             </div>
 
-            <input type="submit" className="btn btn-primary w-full" value='Submit'/>
+            <input type="submit" className="primary-button w-full" value='Submit'/>
           </form>
 
           <div className="space-y-3 mt-5 flex flex-col items-center justify-center">

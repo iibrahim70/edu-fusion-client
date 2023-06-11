@@ -210,7 +210,7 @@ const ManageClasses = () => {
               )}
             </div>
 
-            <input className="btn-primary w-full" type="submit" value="Feedback" />
+            <input className="primary-button w-full" type="submit" value="Feedback" />
           </form>
         </div>
         </>
