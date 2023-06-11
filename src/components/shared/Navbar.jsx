@@ -39,7 +39,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="shadow-2xl">
+    <>
       <div className="navbar w-[90%] mx-auto p-0">
         <div className="navbar-start">
           <div className="dropdown">
@@ -75,7 +75,7 @@ const Navbar = () => {
             <Link className='btn-primary' to='/signin'>Signin</Link>}
         </div>
       </div>
-    </nav>
+    </>
   );
 };
 
