@@ -10,7 +10,7 @@ const Hero = () => {
         <div className='space-y-5'>
           <h1 className='text-3xl lg:text-5xl font-bold'>Creating Trends, Inspiring Dreams</h1>
           <p>"Inspiring Trends, Creating Dreams" - Unleash your creative potential at our fashion design school, where we inspire the latest trends and help turn your dreams into reality. Join us and be part of shaping the future of fashion.</p>
-          <Link to='/classes' className='btn-primary'>Get Classes</Link>
+          <Link to='/classes' className='primary-button'>Get Classes</Link>
         </div>
       </div>
 

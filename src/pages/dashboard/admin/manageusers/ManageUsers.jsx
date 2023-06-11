@@ -96,7 +96,7 @@ const ManageUsers = () => {
                 <td className="capitalize">{user.role}</td>
                 <td>
                   {!isButtonDisabled(user.role) ? (
-                    <button onClick={() => handleMakeInstructor(user)} className="btn btn-primary">
+                    <button onClick={() => handleMakeInstructor(user)} className="primary-button">
                       Instructor
                     </button>
                   ) : (
@@ -105,7 +105,7 @@ const ManageUsers = () => {
                 </td>
                 <td>
                   {!isButtonDisabled(user.role) ? (
-                    <button onClick={() => handleMakeAdmin(user)} className="btn btn-primary">
+                    <button onClick={() => handleMakeAdmin(user)} className="primary-button">
                       Admin
                     </button>
                   ) : (

@@ -3,19 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../../../hooks/useAuth';
 import { useForm } from 'react-hook-form';
 import clsx from 'clsx';
-import axios from 'axios';
 import useToast from '../../../../hooks/useToast';
-
-const fetchMyClasses = async (email) => {
-  const response = await fetch(`http://localhost:3000/myclasses?email=${email}`);
-  const data = await response.json();
-  return data;
-};
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const MyClasses = () => {
   const { user } = useAuth();
   const { showToast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
+  const [axiosSecure] = useAxiosSecure();
   const { data: myclasses = [], isLoading, refetch } = useQuery(['myClasses', user?.email], () =>
     fetchMyClasses(user?.email)
   );
@@ -38,11 +33,22 @@ const MyClasses = () => {
     }
   }, [classes, setValue]);
 
+  const fetchMyClasses = async (email) => {
+    try {
+      const response = await axiosSecure.get(`http://localhost:3000/myclasses?email=${email}`);
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.log(error);
+      return [];
+    }
+  };
+
   const onSubmit = async (data) => {
     try {
       const updatedData = { ...data };
 
-      axios
+      axiosSecure
         .put(`http://localhost:3000/classes/update/${classes._id}`, updatedData, { headers: { 'Content-Type': 'application/json' } })
         .then(() => {
           setIsOpen(false);
@@ -87,7 +93,7 @@ const MyClasses = () => {
               <p className="capitalize">Status: {item?.status}</p>
               {item?.enrollStudent > 0 && <p>Enroll Student: {item?.enrollStudent}</p>}
               {item?.feedback !== null && <p>Feedback: {item?.feedback}</p>}
-              <button onClick={() => handleUpdate(item)} className="btn-primary">
+              <button onClick={() => handleUpdate(item)} className="primary-button">
                 Update
               </button>
             </div>
@@ -160,7 +166,9 @@ const MyClasses = () => {
               )}
             </div>
 
-            <input type="submit" className="btn btn-primary w-full" value="Update" />
+            <div className="text-right">
+              <input className='primary-button' type="submit" value="Update" />
+            </div>
           </form>
         </div>
       </>

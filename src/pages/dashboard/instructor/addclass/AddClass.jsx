@@ -111,7 +111,7 @@ const AddClass = () => {
           )}
         </div>
 
-        <input type="submit" className="btn btn-primary w-full" value='Add' />
+        <input type="submit" className="primary-button w-full" value='Add' />
       </form>
     </div>
   );

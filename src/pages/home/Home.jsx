@@ -6,9 +6,9 @@ import Hero from '../../components/hero/Hero';
 const Home = () => {
   return (
     <>
-      <Hero/>
-      <MyCarousel/>
-      <Instructors/>
+      {/* <Hero/> */}
+      {/* <MyCarousel/> */}
+      {/* <Instructors/> */}
     </>
   );
 };
