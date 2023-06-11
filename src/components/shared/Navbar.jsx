@@ -68,17 +68,11 @@ const Navbar = () => {
                 </div>
               </label>
               <div className="mt-4 p-5 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 space-y-2 font-medium text-base">
-                <Link>
-                  <a className="flex justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </Link>
-                <Link>Settings</Link>
                 <Link onClick={handleLogout}>Logout</Link>
               </div>
             </div>
-            : <Link className='btn-primary' to='/signin'>Signin</Link>}
+            : 
+            <Link className='btn-primary' to='/signin'>Signin</Link>}
         </div>
       </div>
     </nav>

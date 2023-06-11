@@ -7,7 +7,7 @@ import heroImageFour from '../../assets/hero/4.avif';
 
 const MyCarousel = () => {
   return (
-    <div className='my-10'>
+    <div className='mt-20'>
       <Carousel>
         <div style={{ height: '100vh' }}>
           <img src={heroImageOne} />
