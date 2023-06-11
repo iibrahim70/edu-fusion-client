@@ -1,29 +1,24 @@
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import heroImageOne from '../../assets/hero/1.jpg';
-import heroImageTwo from '../../assets/hero/2.jpg';
-import heroImageThree from '../../assets/hero/3.jpg';
-import heroImageFour from '../../assets/hero/4.avif';
+import React from 'react';
+import Lottie from 'lottie-react';
+import heroAnimation from '../../assets/animation/hero/1.json'
+import { Link } from 'react-router-dom';
 
-const MyCarousel = () => {
+const Hero = () => {
   return (
-    <div className='mt-20'>
-      <Carousel>
-        <div style={{ height: '100vh' }}>
-          <img src={heroImageOne} />
+    <div className='flex flex-col-reverse md:flex-row gap-10 min-h-screen'>
+      <div className='flex-1 flex items-center'>
+        <div className='space-y-5'>
+          <h1 className='text-3xl lg:text-5xl font-bold'>Creating Trends, Inspiring Dreams</h1>
+          <p>"Inspiring Trends, Creating Dreams" - Unleash your creative potential at our fashion design school, where we inspire the latest trends and help turn your dreams into reality. Join us and be part of shaping the future of fashion.</p>
+          <Link to='/classes' className='btn-primary'>Get Classes</Link>
         </div>
-        <div style={{ height: '100vh' }}>
-          <img src={heroImageTwo} />
-        </div>
-        <div style={{ height: '100vh' }}>
-          <img src={heroImageThree} />
-        </div>
-        <div style={{ height: '100vh' }}>
-          <img src={heroImageFour} />
-        </div>
-      </Carousel>
+      </div>
+
+      <div className='flex-1'>
+        <Lottie animationData={heroAnimation} loop={true} />
+      </div>
     </div>
   );
 };
 
-export default MyCarousel;
+export default Hero;
