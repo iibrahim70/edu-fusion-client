@@ -6,7 +6,7 @@ import { router } from './routes/Routes.jsx'
 import { RouterProvider } from 'react-router-dom'
 import AuthProvider from './providers/Authprovider'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-// import { ThemeProvider } from './providers/ThemeProvider'
+// import ThemeProvider from '../src/hooks/ThemeProvider';
 
 const queryClient = new QueryClient(); 
 

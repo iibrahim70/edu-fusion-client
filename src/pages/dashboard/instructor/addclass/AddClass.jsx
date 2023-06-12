@@ -3,32 +3,32 @@ import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import useToast from '../../../../hooks/useToast';
 import useAuth from '../../../../hooks/useAuth';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const AddClass = () => {
-  
   const { user } = useAuth();
   const { showToast } = useToast();
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  
   const image_hosting_token = import.meta.env.VITE_IMAGE_UPLOAD_TOKEN;
   const image_hosting_Url = `https://api.imgbb.com/1/upload?key=${image_hosting_token}`;
+
+  const [axiosSecure] = useAxiosSecure();
 
   const mutation = useMutation(async newClasses => {
     const formData = new FormData();
     formData.append('image', newClasses.classImage[0]);
 
-    const res = await fetch(image_hosting_Url, {
-      method: 'POST',
-      body: formData
-    });
+    const res = await axiosSecure.post(image_hosting_Url, formData);
 
-    const data = await res.json();
+    const data = res.data;
     if (data.success) {
       const imgUrl = data.data.display_url;
 
       // send data to the database
       const classesStatus = { status: 'pending' };
       const enrollStudent = { enrollStudent: 0 };
-      const feedback = {feedback: null};
+      const feedback = { feedback: null };
       const postData = {
         className: newClasses.className,
         instructorName: user?.displayName,
@@ -41,14 +41,10 @@ const AddClass = () => {
         ...feedback
       };
 
-      const response = await fetch('http://localhost:3000/classes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(postData)
-      });
-      const responseData = await response.json();
+      const response = await axiosSecure.post('/classes', postData);
+      const responseData = response.data;
       if (responseData.insertedId) {
-        showToast('Class Added Successfully !');
+        showToast('Class Added Successfully!');
         reset();
       }
     }

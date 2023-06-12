@@ -1,50 +1,65 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import useAdmin from '../hooks/useAdmin';
+import useInstructor from '../hooks/useInstructor';
+import { FaUsers } from 'react-icons/fa';
+import { SiGoogleclassroom } from 'react-icons/si';
+import { HiHome } from 'react-icons/hi';
+import { BsBookHalf, BsFillBookmarkPlusFill } from 'react-icons/bs';
+import { MdOutlinePayment } from 'react-icons/md';
+import Lottie from 'lottie-react';
+import dashboardAnimation from '../assets/animation/dashboard/1.json';
+import useAuth from '../hooks/useAuth';
 
 const Dashboard = () => {
   
-  const admin = false;
-  const instructor = true;
+  const [isAdmin, isAdminLoading] = useAdmin(); 
+  const [isInstructor, isInstructorLoading] = useInstructor();
+  const {user} = useAuth(); 
+
+  if (isAdminLoading || isInstructorLoading) return <div className='flex justify-center'> <span className="loading loading-dots loading-md" /> </div>; 
 
   return (
-    <>
-      <div className="drawer lg:drawer-open">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        
-        <div className="drawer-content flex flex-col items-center justify-center">
-          {/* Page content here */}
-          <Outlet/>
-          {/* <label htmlFor="my-drawer-2" className="primary-button drawer-button lg:hidden">Open drawer</label> */}
-        </div>
-
-        <div className="drawer-side bg-red-200">
-          <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-          <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
-            {/* Sidebar content here */}
-
-            {admin ? 
-            <>
-              <li><Link to='/dashboard/manage-users'>Manage Users</Link></li>
-              <li><Link to='/dashboard/manage-classes'>Manage Classes</Link></li> 
-            </> 
-            
-            : instructor?
-            <>
-              <li><Link to='/dashboard/add-class'>Add Class</Link></li>
-              <li><Link to='/dashboard/my-classes'>My Classes</Link></li>
-            </> : 
-
-            <> 
-              <li><Link>My Selected Classes</Link></li>
-              <li><Link>My Enrolled Classes</Link></li>
-              <li><Link>Payment</Link></li> 
-            </>}
-
-          </ul>
-        </div>
+    <div className="drawer lg:drawer-open">
+      <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col items-center justify-center">
+        {/* Page content here */}
+        {/* <h1>Welcome Back {user?.displayName}</h1> */}
+        {/* <Lottie className='w-[50%] mx-auto' animationData={dashboardAnimation} loop={true} /> */}
+        <Outlet />
+        <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label>
 
       </div>
-    </>
+      <div className="drawer-side bg-red-300">
+        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
+        <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content drawer-li">
+          {/* Sidebar content here */}
+          {isAdmin ?
+            <>
+              <li><Link to='/dashboard/manage-users'><FaUsers />Manage Users</Link></li>
+              <li><Link to='/dashboard/manage-classes'><SiGoogleclassroom />Manage Classes</Link></li>
+              <hr className='w-[90%] mx-auto my-5 border-black' />
+              <li><Link to='/'><HiHome />Home</Link></li>
+            </>
+
+            : isInstructor ?
+              <>
+                <li><Link to='/dashboard/add-class'><BsBookHalf/>Add Class</Link></li>
+                <li><Link to='/dashboard/my-classes'><SiGoogleclassroom />My Classes</Link></li>
+                <hr className='w-[90%] mx-auto my-5 border-black' />
+                <li><Link to='/'><HiHome />Home</Link></li>
+              </> :
+
+              <>
+                <li><Link><BsFillBookmarkPlusFill/>Selected Classes</Link></li>
+                <li><Link><BsBookHalf/>Enrolled Classes</Link></li>
+                <li><Link><MdOutlinePayment/>Payment</Link></li>
+                <hr className='w-[90%] mx-auto my-5 border-black' />
+                <li><Link to='/'><HiHome />Home</Link></li>
+              </>}
+        </ul>
+      </div>
+    </div>
   );
 };
 
