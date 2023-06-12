@@ -57,7 +57,7 @@ const Classes = () => {
           </figure>
           <div className="px-5 space-y-2 py-5">
             <h2>{item?.className}</h2>
-            <h4>Instructor: {item?.instructorName}</h4>
+            <h4>{item?.instructorName}</h4>
             <p>Seats: {item?.availableSeats}</p>
             <p>Price: ${item?.price}</p>
             {isAdmin || isInstructor || item.availableSeats === 0 ? (
