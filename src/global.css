@@ -1,33 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 *{
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: 'Roboto', sans-serif;
   /* background-color: #F8F7FF; */
   color: #000814;
 }
 
 h1 {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 700;
 }
 
 h2 {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 h4 {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 }
 
-.t-row > th {
-  font-size: 18px;
-  font-weight: 700;
-}
-.t-row > td {
-  font-size: 16px;
+.drawer-li > li{
+  font-size: 14px;
   font-weight: 500;
+}
+.custom-footer{
+  color: white;
 }
 
 .primary-button {

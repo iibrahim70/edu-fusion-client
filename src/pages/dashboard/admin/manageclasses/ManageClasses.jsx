@@ -6,28 +6,30 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import useToast from '../../../../hooks/useToast';
 import { AiFillCloseSquare } from 'react-icons/ai';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const ManageClasses = () => {
   const { showToast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [axiosSecure] = useAxiosSecure(); 
 
   const { register, handleSubmit, formState: { errors }, reset } = useForm();
-  const { data: classes = [], refetch } = useQuery(['classes'], async () => {
-    const res = await axios.get('http://localhost:3000/classes');
+  const { data: classes = [], isLoading, refetch } = useQuery(['classes'], async () => {
+    const res = await axiosSecure.get('/classes');
     return res.data;
   });
 
   const approveClass = useMutation((itemId) =>
-    axios.put(`http://localhost:3000/classes/approve/${itemId}`)
+    axiosSecure.put(`/classes/approve/${itemId}`)
   );
 
   const denyClass = useMutation((itemId) =>
-    axios.put(`http://localhost:3000/classes/deny/${itemId}`)
+    axiosSecure.put(`/classes/deny/${itemId}`)
   );
 
   const submitFeedback = useMutation((data) =>
-    axios.put(`http://localhost:3000/classes/feedback/${selectedItem._id}`, {
+    axiosSecure.put(`/classes/feedback/${selectedItem._id}`, {
       feedback: data.feedback,
     })
   );
@@ -134,12 +136,14 @@ const ManageClasses = () => {
     }
   };
 
+  if (isLoading) return <span className="loading loading-dots loading-md" />;
+
   return (
     <div className="w-full py-20">
-      <h1 className="text-center pb-5">Available Classes: {classes.length}</h1>
+      <h1 className="text-center pb-20">Available Classes: {classes.length}</h1>
 
       <div className="overflow-x-auto">
-        <table className="table">
+        <table className="table table-xs">
           <thead>
             <tr>
               <th></th>
@@ -147,7 +151,7 @@ const ManageClasses = () => {
               <th>Class Name</th>
               <th>Instructor Name</th>
               <th>Instructor Email</th>
-              <th>Available Seats</th>
+              <th>Seats</th>
               <th>Price</th>
               <th>Action</th>
               <th>Status</th>

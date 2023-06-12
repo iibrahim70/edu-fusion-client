@@ -11,9 +11,7 @@ const MyClasses = () => {
   const { showToast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [axiosSecure] = useAxiosSecure();
-  const { data: myclasses = [], isLoading, refetch } = useQuery(['myClasses', user?.email], () =>
-    fetchMyClasses(user?.email)
-  );
+  const { data: myclasses = [], isLoading, refetch } = useQuery(['myClasses', user?.email], () => fetchMyClasses(user?.email));
 
   const [classes, setClasses] = useState(null);
   const { register, handleSubmit, formState: { errors }, setValue } = useForm();
@@ -35,7 +33,7 @@ const MyClasses = () => {
 
   const fetchMyClasses = async (email) => {
     try {
-      const response = await axiosSecure.get(`http://localhost:3000/myclasses?email=${email}`);
+      const response = await axiosSecure.get(`/myclasses?email=${email}`);
       const data = response.data;
       return data;
     } catch (error) {
@@ -49,7 +47,7 @@ const MyClasses = () => {
       const updatedData = { ...data };
 
       axiosSecure
-        .put(`http://localhost:3000/classes/update/${classes._id}`, updatedData, { headers: { 'Content-Type': 'application/json' } })
+        .put(`/classes/update/${classes._id}`, updatedData, { headers: { 'Content-Type': 'application/json' } })
         .then(() => {
           setIsOpen(false);
           refetch();

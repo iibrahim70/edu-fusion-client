@@ -2,11 +2,14 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import useAxiosSecure from '../../../../hooks/useAxiosSecure';
 
 const ManageUsers = () => {
-  const { data: users = [], refetch } = useQuery(['users'], async () => {
-    const res = await fetch('http://localhost:3000/users');
-    return res.json();
+
+  const [axiosSecure] = useAxiosSecure();
+  const { data: users = [], isLoading, refetch } = useQuery(['users'], async () => {
+    const res = await axiosSecure.get('/users');
+    return res.data;
   });
 
   const handleMakeAdmin = async (user) => {
@@ -22,7 +25,7 @@ const ManageUsers = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.patch(`http://localhost:3000/users/admin/${user._id}`);
+          await axiosSecure.patch(`/users/admin/${user._id}`);
           refetch();
           Swal.fire({
             position: 'top-end',
@@ -52,7 +55,7 @@ const ManageUsers = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.patch(`http://localhost:3000/users/instructor/${user._id}`);
+          await axiosSecure.patch(`/users/instructor/${user._id}`);
           refetch();
           Swal.fire({
             position: 'top-end',
@@ -69,16 +72,20 @@ const ManageUsers = () => {
     });
   };
 
+  if (isLoading) return <span className="loading loading-dots loading-md" />;
+
   const isButtonDisabled = (role) => {
     return role === 'admin' || role === 'instructor';
   };
 
   return (
-    <>
+    <div className='py-20'>
+      <h1 className="text-center pb-20">All Users: {users.length}</h1>
+
       <div className="overflow-x-auto">
         <table className="table table-zebra">
           <thead>
-            <tr className="t-row">
+            <tr>
               <th></th>
               <th>Name</th>
               <th>Email</th>
@@ -89,7 +96,7 @@ const ManageUsers = () => {
           </thead>
           <tbody>
             {users.map((user, index) => (
-              <tr key={user._id} className="t-row">
+              <tr key={user._id}>
                 <td>{index + 1}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
@@ -117,7 +124,7 @@ const ManageUsers = () => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 
