@@ -17,7 +17,7 @@ const SocialLogin = () => {
         navigate(from, { replace: true });
 
         const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email, role: 'student' };
-        axios.post('http://localhost:3000/users', saveUser, {
+        axios.post('https://dressx-server.vercel.app/users', saveUser, {
           headers: { 'Content-Type': 'application/json' },
         })
       })
