@@ -3,7 +3,7 @@ import React from 'react';
 
 const Instructors = () => {
   const { data: instructors = [], isLoading } = useQuery(['instructors'], () =>
-    fetch('http://localhost:3000/instructors').then(res => res.json())
+    fetch('https://dressx-server.vercel.app/instructors').then(res => res.json())
   );
 
   if (isLoading) {

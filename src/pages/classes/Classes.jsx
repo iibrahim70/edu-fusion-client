@@ -15,7 +15,7 @@ const Classes = () => {
   const [axiosSecure] = useAxiosSecure();
 
   const { data: classes = [], isLoading } = useQuery(['classes'], () =>
-    fetch('http://localhost:3000/approve-classes').then((res) => res.json())
+    fetch('https://dressx-server.vercel.app/approve-classes').then((res) => res.json())
   );
 
   const [isAdmin] = useAdmin();
@@ -32,7 +32,7 @@ const Classes = () => {
   const handleSelect = (item) => {
     if (user) {
       const orderItem = { classId: item._id, userEmail: user.email, userName: user.displayName, availableSeats: item.availableSeats, price: item.price, imageUrl: item.imageUrl, enrollStudent: item.enrollStudent };
-      axiosSecure.post('http://localhost:3000/carts', orderItem)
+      axiosSecure.post('https://dressx-server.vercel.app/carts', orderItem)
         .then(() => {
           showToast('Add To Cart Successfully!');
         })
