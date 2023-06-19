@@ -48,6 +48,7 @@ const AuthProvider = ({ children }) => {
         axios.post('https://dressx-server.vercel.app/jwt', { email: loggedUser.email })
         .then(data => {
           localStorage.setItem('access-token', data.data.token);
+          setLoading(false);
         })
       }
       else{

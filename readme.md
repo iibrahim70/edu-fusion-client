@@ -65,14 +65,13 @@ The home page contains five routes to navigate through different sections of the
   - Toastify JS
   - Swiper JS
 
+## Payment
+For Payment, Stripe Integration is used. Please refer to the Stripe documentation for implementation details.
+
 ## Contributions
 
 Contributions to the Fashion Design School MERN stack website are welcome. If you find any issues or have any suggestions, please open an issue or submit a pull request on GitHub.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as per your requirements.
-
 ## Contact
 
-For any further information or inquiries, please contact us at [aviknuhash70@gmail.com].
+For any further information or inquiries, please contact us at [Email](aviknuhash70@gmail.com).

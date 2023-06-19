@@ -6,8 +6,11 @@ import useAuth from '../../hooks/useAuth';
 import useToast from '../../hooks/useToast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
+import Title from '../../components/title/Title';
 
 const Classes = () => {
+  const {pathname} = useLocation(); 
+  console.log(pathname);
   const { user } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
@@ -47,6 +50,7 @@ const Classes = () => {
 
   return (
     <div className="grid grid-cols-3 gap-10 my-20">
+      {pathname === '/' && <Title title='helo' />}
       {classes.map((item) => (
         <div
           key={item._id}
