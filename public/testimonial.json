@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Alice Johnson",
+    "gender": "female",
+    "review": "I had an amazing experience at the fashion design school! The courses were incredibly comprehensive, covering everything from fashion history to the latest industry trends. The instructors were not only talented but also highly supportive, always pushing us to explore our creativity to the fullest. I can confidently say that attending this school was a turning point in my fashion design journey. The skills and knowledge I gained here have been invaluable.",
+    "picture": "https://images.pexels.com/photos/1468379/pexels-photo-1468379.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "David Smith",
+    "gender": "male",
+    "review": "Enrolling in the fashion design program here was one of the best decisions I've made. This program exceeded my expectations in every way. The curriculum is thoughtfully designed, allowing students to develop their creativity while honing their technical skills. The instructors are not just teachers; they are mentors who genuinely care about your growth as a designer. I wholeheartedly recommend this school to anyone passionate about fashion.",
+    "picture": "https://images.pexels.com/photos/2313192/pexels-photo-2313192.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "name": "Sophia Martinez",
+    "gender": "female",
+    "review": "My time at this fashion school was nothing short of outstanding. The faculty members are experts in the field and provide personalized guidance that was instrumental in my growth as a designer. Whether it was fashion sketching, pattern-making, or draping, the learning experience was immersive and inspiring. I'm proud to be an alumna of this institution.",
+    "picture": "https://images.pexels.com/photos/904117/pexels-photo-904117.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 5
+  },
+  {
+    "id": 4,
+    "name": "Michael Davis",
+    "gender": "male",
+    "review": "The fashion design courses at this school are both challenging and inspiring. What sets this program apart is the emphasis on real-world projects that prepare you for a successful career in the industry. The instructors bring their industry experience into the classroom, providing valuable insights that can't be found in textbooks. I'm grateful for the connections I made here, which have opened doors to exciting opportunities.",
+    "picture": "https://images.pexels.com/photos/2269872/pexels-photo-2269872.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4
+  },
+  {
+    "id": 5,
+    "name": "Olivia White",
+    "gender": "female",
+    "review": "The fashion school's resources and facilities are top-notch. It's not just a place to study; it's a creative hub where you can nurture your passion for design. The diverse range of courses and workshops allowed me to explore various aspects of fashion. Whether you're interested in haute couture or sustainable fashion, you'll find the support and guidance you need to excel here.",
+    "picture": "https://images.pexels.com/photos/1021693/pexels-photo-1021693.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 5
+  },
+  {
+    "id": 6,
+    "name": "Lucas Anderson",
+    "gender": "male",
+    "review": "I can't thank this school enough for my growth as a designer. The instructors are industry professionals who bring valuable insights to the classroom. They not only teach you about fashion but also guide you on how to navigate the fashion industry. I'm grateful for the connections I made here, which have opened doors to exciting opportunities in the fashion world.",
+    "picture": "https://images.pexels.com/photos/3116018/pexels-photo-3116018.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4
+  },
+  {
+    "id": 7,
+    "name": "Emma Turner",
+    "gender": "female",
+    "review": "Enrolling in this fashion school was the best decision I made. The curriculum is diverse, covering everything from fashion history to contemporary design trends. The learning atmosphere is incredibly inspiring, with fellow students who share the same passion for fashion. The skills and knowledge I gained here have been instrumental in my success as a designer.",
+    "picture": "https://images.pexels.com/photos/1535051/pexels-photo-1535051.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 5
+  },
+  {
+    "id": 8,
+    "name": "William Harris",
+    "gender": "male",
+    "review": "This school's commitment to excellence is evident in its programs. I'm proud to be an alumnus, and I've achieved great success in the fashion industry thanks to the solid foundation I received here. The education I received went beyond design; it encompassed entrepreneurship and innovation, which set me apart in the competitive fashion world.",
+    "picture": "https://images.pexels.com/photos/1379031/pexels-photo-1379031.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 5
+  },
+  {
+    "id": 9,
+    "name": "Ava Rodriguez",
+    "gender": "female",
+    "review": "This school's holistic approach to education is exceptional. Not only did I learn about fashion design, but I also gained insights into entrepreneurship. The well-rounded education I received here prepared me for success in the ever-evolving fashion industry. The supportive community and the guidance from experienced instructors made all the difference.",
+    "picture": "https://images.pexels.com/photos/983569/pexels-photo-983569.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 4
+  },
+  {
+    "id": 10,
+    "name": "Jackson Lee",
+    "gender": "male",
+    "review": "The fashion design program at this school challenged me to think outside the box and embrace my unique creative vision. The curriculum is designed to foster innovation, and the instructors encourage students to push their boundaries. My time here has been transformative, and I now have the confidence to pursue my dreams in the fashion industry.",
+    "picture": "https://images.pexels.com/photos/1808398/pexels-photo-1808398.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "rating": 5
+  }
+]

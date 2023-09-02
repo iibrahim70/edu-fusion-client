@@ -1,10 +1,11 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
-const ActiveLink = ({to, children}) => {
+const ActiveLink = ({ to, children }) => {
   return (
-    <NavLink to={to} className={({ isActive }) =>
-      isActive ? "text-blue-600" : ""}>
+    <NavLink
+      to={to}
+      className={({ isActive }) => (isActive ? "text-blue-600" : "")}
+    >
       {children}
     </NavLink>
   );

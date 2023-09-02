@@ -6,6 +6,7 @@ import useToast from "../../hooks/useToast";
 import axios from "axios";
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
+import Button from "../../components/button/Button";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useAuth();
@@ -190,19 +191,19 @@ const Signup = () => {
             )}
           </div>
 
-          <button type="submit" className="primary-button w-full">
+          <Button type="submit" colors="secondary" size="full">
             Signup
-          </button>
+          </Button>
         </form>
 
-        <div className="space-y-3 mt-5 flex flex-col items-center justify-center">
+        <div className="space-y-4 mt-4 flex flex-col items-center justify-center">
+          <SocialLogin />
           <p>
             Already Have An Account?{" "}
-            <Link to="/signin" className="text-blue-500">
+            <Link to="/signin" className="text-red-500">
               Signin
             </Link>
           </p>
-          <SocialLogin />
         </div>
       </div>
     </main>

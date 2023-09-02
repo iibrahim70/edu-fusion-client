@@ -5,8 +5,11 @@ import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/sociallogin/SocialLogin";
 import useToast from "../../hooks/useToast";
+import Button from "../../components/button/Button";
 
 const Signin = () => {
+  const { Login } = useAuth();
+  const { showToast } = useToast();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -16,8 +19,6 @@ const Signin = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { Login } = useAuth();
-  const { showToast } = useToast();
 
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
@@ -25,11 +26,8 @@ const Signin = () => {
   };
 
   const onSubmit = (user) => {
-    const { email, password } = user;
-    Login(email, password)
+    Login(user.email, user.password)
       .then((res) => {
-        const user = res.user;
-        console.log(user);
         navigate(from, { replace: true });
         showToast("User Signed In Successfully !");
       })
@@ -77,20 +75,20 @@ const Signin = () => {
             )}
           </div>
 
-          <button type="submit" className="primary-button w-full">
+          <Button type="submit" colors="secondary" size="full">
             Signin
-          </button>
+          </Button>
         </form>
 
         {/* toggle singup */}
-        <div className="space-y-3 mt-5 flex flex-col items-center justify-center">
+        <div className="space-y-4 mt-4 flex flex-col items-center justify-center">
+          <SocialLogin />
           <p>
             Don't Have An Account Yet?{" "}
-            <Link to="/signup" className="text-blue-500">
+            <Link to="/signup" className="text-red-500">
               Signup
             </Link>
           </p>
-          <SocialLogin />
         </div>
       </div>
     </main>
