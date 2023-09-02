@@ -2,12 +2,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import TestimonialData from "../../../public/testimonial.json";
 import Rating from "react-rating";
+import SectionTitle from "../sectiontitle/SectionTitle";
 import "swiper/css";
 import "swiper/css/pagination";
 
 const Testimonial = () => {
   return (
-    <section className="min-h-screen">
+    <section>
+      <SectionTitle
+        title="Discover What Our Students Say"
+        description="Listen to the stories of our talented fashion design students and alumni. Learn about their inspiring journeys, creative experiences, and the valuable skills they've gained through our programs. Find out why they chose our fashion school and how it has transformed their passion into remarkable careers in the fashion industry."
+      />
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -30,10 +35,10 @@ const Testimonial = () => {
         {TestimonialData.map((item) => (
           <SwiperSlide key={item.id} className="border rounded p-5">
             <div className="space-y-5">
-              <p className="text-justify">{item.review.substring(0, 220)}...</p>
+              <p className="text-justify">{item.review.substring(0, 190)}...</p>
               <hr className="w-[90%] mx-auto" />
 
-              <div className="flex flex-row gap-5 items-center">
+              <div className="flex flex-row gap-5 items-center justify-center">
                 <div className="avatar">
                   <div className="w-24 rounded-full">
                     <img src={item.picture} alt={item.name} />
