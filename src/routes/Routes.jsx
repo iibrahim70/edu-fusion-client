@@ -12,60 +12,52 @@ import AddClass from "../pages/dashboard/instructor/addclass/AddClass";
 import ManageClasses from "../pages/dashboard/admin/manageclasses/ManageClasses";
 import MyClasses from "../pages/dashboard/instructor/myclasses/MyClasses";
 import Classes from "../pages/classes/Classes";
-import PrivateRoute from "./PrivateRoute";
-
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Main />,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home />,
       },
       {
-        path: '/instructors',
+        path: "/instructors",
         element: <Instructors />,
       },
       {
-        path: '/classes',
+        path: "/classes",
         element: <Classes />,
       },
-      {
-        path: '/signup',
-        element: <Signup />,
-      },
-      {
-        path: '/signin',
-        element: <Signin />,
-      },
-    ]
-  }, 
+    ],
+  },
   {
-    path: '/dashboard',
-    element: <Dashboard />, 
+    path: "/dashboard",
+    element: <Dashboard />,
     children: [
       // admin only
       {
-        path: 'manage-users',
+        path: "manage-users",
         element: <ManageUsers />,
       },
       {
-        path: 'manage-classes',
+        path: "manage-classes",
         element: <ManageClasses />,
       },
 
-      // instructor only 
+      // instructor only
       {
-        path: 'add-class',
+        path: "add-class",
         element: <AddClass />,
       },
       {
-        path: 'my-classes',
+        path: "my-classes",
         element: <MyClasses />,
       },
-    ]
-  }
-])
+    ],
+  },
+  { path: "/signup", element: <Signup /> },
+  { path: "/signin", element: <Signin /> },
+]);
