@@ -9,7 +9,7 @@ const Main = () => {
       <main className="w-[90%] mx-auto">
         <Outlet />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };
