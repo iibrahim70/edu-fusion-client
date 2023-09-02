@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import useToast from "../../hooks/useToast";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import Title from "../../components/title/Title";
+// import Title from "../../components/title/Title";
 
 const Classes = () => {
   const { pathname } = useLocation();
