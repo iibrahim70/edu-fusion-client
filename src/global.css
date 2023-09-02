@@ -1,12 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
-*{
-  font-family: 'Roboto', sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Roboto", sans-serif;
   /* background-color: #F8F7FF; */
   color: #000814;
 }
 
-h1 {
+/* h1 {
   font-size: 20px;
   font-weight: 700;
 }
@@ -19,13 +23,23 @@ h2 {
 h4 {
   font-size: 16px;
   font-weight: 500;
+} */
+
+/* input fields style */
+.inputFiedls {
+  @apply w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-b focus:border-[#333333] focus:ring-0;
 }
 
-.drawer-li > li{
+/* react phone num input */
+.PhoneInputInput {
+  outline: none;
+}
+
+.drawer-li > li {
   font-size: 14px;
   font-weight: 500;
 }
-.custom-footer{
+.custom-footer {
   color: white;
 }
 
