@@ -5,7 +5,7 @@ import { buttonVariants } from "../button/Button";
 
 const Hero = () => {
   return (
-    <section className="flex flex-col-reverse md:flex-row gap-10 min-h-screen">
+    <section className="flex flex-col-reverse md:flex-row gap-10">
       <div className="flex-1 flex items-center">
         <div className="space-y-5">
           <h1 className="text-3xl lg:text-5xl font-bold">

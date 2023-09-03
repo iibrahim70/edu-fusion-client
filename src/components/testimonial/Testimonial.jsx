@@ -1,14 +1,35 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import TestimonialData from "../../../public/testimonial.json";
 import Rating from "react-rating";
 import SectionTitle from "../sectiontitle/SectionTitle";
 import "swiper/css";
 import "swiper/css/pagination";
 
 const Testimonial = () => {
+  const { isLoading, error, data } = useQuery(["testimonial"], () =>
+    axios
+      .get("https://dressx-server.vercel.app/reviews")
+      .then((res) => res.data)
+  );
+
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Error: {error.message}
+      </div>
+    );
+
   return (
-    <section>
+    <section className="my-10 xl:my-20">
       <SectionTitle
         title="Discover What Our Students Say"
         description="Listen to the stories of our talented fashion design students and alumni. Learn about their inspiring journeys, creative experiences, and the valuable skills they've gained through our programs. Find out why they chose our fashion school and how it has transformed their passion into remarkable careers in the fashion industry."
@@ -32,8 +53,11 @@ const Testimonial = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {TestimonialData.map((item) => (
-          <SwiperSlide key={item.id} className="border rounded p-5">
+        {data.map((item) => (
+          <SwiperSlide
+            key={item._id}
+            className="border border-slate-300 rounded p-5"
+          >
             <div className="space-y-5">
               <p className="text-justify">{item.review.substring(0, 190)}...</p>
               <hr className="w-[90%] mx-auto" />
@@ -41,7 +65,7 @@ const Testimonial = () => {
               <div className="flex flex-row gap-5 items-center justify-center">
                 <div className="avatar">
                   <div className="w-24 rounded-full">
-                    <img src={item.picture} alt={item.name} />
+                    <img src={item.image} alt={item.name} />
                   </div>
                 </div>
 
@@ -55,7 +79,7 @@ const Testimonial = () => {
                     readonly
                     emptySymbol={<span className="text-gray-300">&#9734;</span>}
                     fullSymbol={
-                      <span className="text-yellow-400">&#9733;</span>
+                      <span className="text-yellow-300">&#9733;</span>
                     }
                   />
                 </div>

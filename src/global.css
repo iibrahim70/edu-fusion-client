@@ -9,21 +9,6 @@
   color: #000814;
 }
 
-/* h1 {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-h2 {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-h4 {
-  font-size: 16px;
-  font-weight: 500;
-} */
-
 /* input fields style */
 .inputFiedls {
   @apply w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-b focus:border-[#333333] focus:ring-0;
