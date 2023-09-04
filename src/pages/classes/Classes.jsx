@@ -7,6 +7,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import axios from "axios";
 import SectionTitle from "../../components/sectiontitle/SectionTitle";
+import Button from "../../components/button/Button";
+import { BsFillPeopleFill } from "react-icons/bs";
 
 const Classes = () => {
   const { pathname } = useLocation();
@@ -79,34 +81,39 @@ const Classes = () => {
         {data.map((item) => (
           <div
             key={item._id}
-            className={`shadow-xl ${
-              item.availableSeats === 0 ? "bg-red-500" : ""
-            }`}
+            className={`${item.availableSeats === 0 ? "bg-red-500" : ""}`}
           >
-            <figure>
+            <div className="pb-3 text-right">
+              <span className="bg-blue/90 p-2 rounded-xl text-white text-sm">
+                {item?.className}
+              </span>
+            </div>
+
+            <div className="shadow-xl rounded">
               <img
-                className="h-[90%] w-full"
+                className="h-[250px] w-full rounded"
                 src={item?.imageUrl}
                 alt="Classes"
               />
-            </figure>
-            <div className="px-5 space-y-2 py-5">
-              <h2>{item?.className}</h2>
-              <h4>{item?.instructorName}</h4>
-              <p>Seats: {item?.availableSeats}</p>
-              <p>Price: ${item?.price}</p>
-              {isAdmin || isInstructor || item.availableSeats === 0 ? (
-                <button className="disabled-button" disabled>
-                  Select
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleSelect(item)}
-                  className="primary-button"
-                >
-                  Select
-                </button>
-              )}
+              <div className="p-5 space-y-2">
+                <h3 className="text-xl font-medium">{item?.instructorName}</h3>
+                <p className="flex items-center gap-2">
+                  <BsFillPeopleFill />
+                  {item?.availableSeats}
+                </p>
+                <div className="flex justify-between items-center">
+                  <p className="text-xl font-semibold">${item?.price}</p>
+                  {isAdmin || isInstructor || item.availableSeats === 0 ? (
+                    <Button colors="disabled" size="small">
+                      Select
+                    </Button>
+                  ) : (
+                    <Button onClick={() => handleSelect(item)} size="small">
+                      Select
+                    </Button>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
         ))}
