@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
-import heroAnimation from "../../assets/animation/hero/1.json";
+import heroAnimation from "../assets/animation/hero/1.json";
 import { Link } from "react-router-dom";
-import { buttonVariants } from "../button/Button";
+import { buttonVariants } from "./button/Button";
 
 const Hero = () => {
   return (
