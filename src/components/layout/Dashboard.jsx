@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
-import useAdmin from "../hooks/useAdmin";
-import useInstructor from "../hooks/useInstructor";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 import { FaUsers } from "react-icons/fa";
 import { SiGoogleclassroom } from "react-icons/si";
 import { HiHome } from "react-icons/hi";

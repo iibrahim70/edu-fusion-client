@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import useAdmin from "../../hooks/useAdmin";
-import useInstructor from "../../hooks/useInstructor";
-import useAuth from "../../hooks/useAuth";
-import useToast from "../../hooks/useToast";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
+import useAuth from "../hooks/useAuth";
+import useToast from "../hooks/useToast";
 import { useLocation, useNavigate } from "react-router-dom";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 import axios from "axios";
-import SectionTitle from "../../components/sectiontitle/SectionTitle";
-import Button from "../../components/button/Button";
+import SectionTitle from "../components/sectiontitle/SectionTitle";
+import Button from "../components/button/Button";
 import { BsFillPeopleFill } from "react-icons/bs";
 
 const Classes = () => {
