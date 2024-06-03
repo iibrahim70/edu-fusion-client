@@ -1,9 +1,12 @@
 import { FcGoogle } from "react-icons/fc";
-import useAuth from "../../hooks/useAuth";
+// import useAuth from "../../hooks/useAuth";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Button from "../button/Button";
-import useToast from "../../hooks/useToast";
+// import Button from "../button/Button";
+// import useToast from "../../hooks/useToast";
+import useAuth from "@/hooks/useAuth";
+import useToast from "@/hooks/useToast";
+import { Button } from "./ui/button";
 
 const SocialLogin = () => {
   const { showToast } = useToast();
@@ -35,7 +38,7 @@ const SocialLogin = () => {
 
   return (
     <>
-      <Button onClick={handleGoogleSignin} colors="transparent" size="full">
+      <Button onClick={handleGoogleSignin}>
         <div className="flex gap-x-2 items-center justify-center">
           <h4 className="font-semibold">Google</h4>
           <FcGoogle className="w-6 h-6" />

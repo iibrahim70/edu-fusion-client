@@ -1,7 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import SectionTitle from "../components/sectiontitle/SectionTitle";
 
 const Instructors = () => {
   const { pathname } = useLocation();
