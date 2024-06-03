@@ -7,8 +7,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import axios from "axios";
 import SectionTitle from "../components/sectiontitle/SectionTitle";
-import Button from "../components/button/Button";
 import { BsFillPeopleFill } from "react-icons/bs";
+import { Button } from "@/components/ui/button";
 
 const Classes = () => {
   const { pathname } = useLocation();

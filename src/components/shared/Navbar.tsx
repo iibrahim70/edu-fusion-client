@@ -1,17 +1,16 @@
-import { Button } from "../ui/button";
+import { Button, buttonVariants } from "../ui/button";
 import { Moon, Sun } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
+import { useTheme } from "@/providers/themeProvider";
+import { Link } from "react-router-dom";
 import { IoMenu, IoClose } from "react-icons/io5";
+import { cn } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-// import { useTheme } from "next-themes";
-import { Link } from "react-router-dom";
-import { useTheme } from "@/providers/themeProvider";
 
 const Navbar = () => {
   const [menuOpen, setIsMenuOpen] = useState(false);
@@ -20,9 +19,8 @@ const Navbar = () => {
   // Define your navigation items as an array of objects
   const navItems = [
     { label: "Home", pathName: "/" },
-    { label: "Categories", pathName: "/" },
-    { label: "Products", pathName: "/products" },
-    { label: "Flash Sale", pathName: "/flash-sale" },
+    { label: "Study Session", pathName: "/study-sessions" },
+    { label: "Tutors", pathName: "/tutors" },
     { label: "About Us", pathName: "/" },
     { label: "Contact Us", pathName: "/" },
   ];
@@ -33,7 +31,7 @@ const Navbar = () => {
   }, [menuOpen]);
 
   return (
-    <nav className="shadow-md dark:border-b dark:border-dark-gray">
+    <nav className="shadow-md dark:border-b dark:border-black">
       <div className="section-wrapper flex items-center justify-between py-3">
         {/* left side */}
         <Link to="/" className="font-bold text-xl">
@@ -71,6 +69,10 @@ const Navbar = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+
+          <Link to="/signin" className={buttonVariants()}>
+            Signin
+          </Link>
 
           <button onClick={() => setIsMenuOpen(true)} className="md:hidden">
             <IoMenu className="size-6" />

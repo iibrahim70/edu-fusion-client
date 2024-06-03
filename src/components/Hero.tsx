@@ -1,31 +1,19 @@
-import Lottie from "lottie-react";
-import heroAnimation from "../assets/animation/hero/1.json";
 import { Link } from "react-router-dom";
-import { buttonVariants } from "./button/Button";
+import { buttonVariants } from "./ui/button";
 
 const Hero = () => {
   return (
-    <section className="flex flex-col-reverse md:flex-row gap-10">
-      <div className="flex-1 flex items-center">
-        <div className="space-y-5">
-          <h1 className="text-3xl lg:text-5xl font-bold">
-            Creating Trends, Inspiring Dreams
-          </h1>
-          <p>
-            "Inspiring Trends, Creating Dreams" - Unleash your creative
-            potential at our fashion design school, where we inspire the latest
-            trends and help turn your dreams into reality. Join us and be part
-            of shaping the future of fashion.
-          </p>
-          <Link to="/classes" className={buttonVariants()}>
-            Get Classes
-          </Link>
-        </div>
-      </div>
-
-      <div className="flex-1">
-        <Lottie animationData={heroAnimation} loop={true} />
-      </div>
+    <section className="section-wrapper min-h-[calc(100dvh-64px)] flex flex-col items-center justify-center gap-5 text-center">
+      <h1>Empowering Minds, Connecting Learners</h1>
+      <p>
+        "Empowering Minds, Connecting Learners" - Transform your educational
+        journey at EduFusion, where students, tutors, and administrators come
+        together to inspire and achieve academic excellence. Join us and be a
+        part of a dynamic learning community.
+      </p>
+      <Link to="/classes" className={buttonVariants()}>
+        Get Classes
+      </Link>
     </section>
   );
 };
