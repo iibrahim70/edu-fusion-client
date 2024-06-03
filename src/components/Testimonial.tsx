@@ -3,7 +3,7 @@ import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import Rating from "react-rating";
-import SectionTitle from "./sectiontitle/SectionTitle";
+import SectionTitle from "./SectionTitle";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -32,10 +32,14 @@ const Testimonial = () => {
 
   return (
     <section className="my-10 xl:my-20">
-      <SectionTitle
+      {/* <SectionTitle
         title="Discover What Our Students Say"
         description="Listen to the stories of our talented fashion design students and alumni. Learn about their inspiring journeys, creative experiences, and the valuable skills they've gained through our programs. Find out why they chose our fashion school and how it has transformed their passion into remarkable careers in the fashion industry."
-      />
+      /> */}
+      {/* 
+      <h2>{title}</h2>
+      <p className="text-justify xl:w-[70%]">{description}</p> */}
+
       <Swiper
         slidesPerView={1}
         spaceBetween={10}

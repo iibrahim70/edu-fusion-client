@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import useAuth from "../../hooks/useAuth";
-import SocialLogin from "../../components/sociallogin/SocialLogin";
-import useToast from "../../hooks/useToast";
-import Button from "../../components/button/Button";
+import { Button } from "@/components/ui/button";
+import SocialLogin from "@/components/SocialLogin";
+// import SocialLogin from "../../components/sociallogin/SocialLogin";
+// import useToast from "../../hooks/useToast";
+// import Button from "../../components/button/Button";
 
 const Signin = () => {
   const { Login } = useAuth();
@@ -75,9 +77,7 @@ const Signin = () => {
             )}
           </div>
 
-          <Button type="submit" colors="secondary" size="full">
-            Signin
-          </Button>
+          <Button type="submit">Signin</Button>
         </form>
 
         {/* toggle singup */}

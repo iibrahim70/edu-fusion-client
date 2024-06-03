@@ -6,7 +6,6 @@ import useToast from "../hooks/useToast";
 import { useLocation, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import axios from "axios";
-import SectionTitle from "../components/sectiontitle/SectionTitle";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { Button } from "@/components/ui/button";
 
@@ -72,12 +71,12 @@ const Classes = () => {
     <div
       className={`${pathname === "/" ? "mt-10 xl:mt-20" : "my-10 xl:my-20"}`}
     >
-      {pathname === "/" && (
+      {/* {pathname === "/" && (
         <SectionTitle
           title="Discover the World of Fashion Design"
           description="Welcome to our fashion design school, where creativity meets craftsmanship. Explore our curated selection of classes tailored to inspire and nurture your passion for fashion. From the fundamentals to advanced techniques, our courses cater to all skill levels. Join us on a journey of style, innovation, and skill development in the world of fashion design."
         />
-      )}
+      )} */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
         {data.map((item) => (

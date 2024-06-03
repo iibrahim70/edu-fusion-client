@@ -16,7 +16,7 @@ const Navbar = () => {
   const [menuOpen, setIsMenuOpen] = useState(false);
   const { setTheme } = useTheme();
 
-  // Define your navigation items as an array of objects
+  // navigation items as an array of objects
   const navItems = [
     { label: "Home", pathName: "/" },
     { label: "Study Session", pathName: "/study-sessions" },
