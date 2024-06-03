@@ -18,11 +18,13 @@ const Classes = () => {
   const location = useLocation();
   const [axiosSecure] = useAxiosSecure();
 
-  const { isLoading, error, data } = useQuery(["classes"], () =>
-    axios
-      .get("https://dressx-server.vercel.app/approve-classes")
-      .then((res) => res.data)
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["classes"],
+    queryFn: () =>
+      axios
+        .get("https://dressx-server.vercel.app/approve-classes")
+        .then((res) => res.data),
+  });
 
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();

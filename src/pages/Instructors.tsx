@@ -6,11 +6,13 @@ import SectionTitle from "../components/sectiontitle/SectionTitle";
 const Instructors = () => {
   const { pathname } = useLocation();
 
-  const { isLoading, error, data } = useQuery(["instructors"], () =>
-    axios
-      .get("https://dressx-server.vercel.app/instructors")
-      .then((res) => res.data)
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["instructors"],
+    queryFn: () =>
+      axios
+        .get("https://dressx-server.vercel.app/instructors")
+        .then((res) => res.data),
+  });
 
   if (isLoading)
     return (

@@ -8,11 +8,13 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 const Testimonial = () => {
-  const { isLoading, error, data } = useQuery(["testimonial"], () =>
-    axios
-      .get("https://dressx-server.vercel.app/reviews")
-      .then((res) => res.data)
-  );
+  const { isLoading, error, data } = useQuery({
+    queryKey: ["testimonial"],
+    queryFn: () =>
+      axios
+        .get("https://dressx-server.vercel.app/reviews")
+        .then((res) => res.data),
+  });
 
   if (isLoading)
     return (

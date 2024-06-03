@@ -9,6 +9,10 @@
   color: #000814;
 }
 
+.section-wrapper {
+  @apply px-5 lg:px-10 max-w-7xl mx-auto;
+}
+
 /* input fields style */
 .inputFiedls {
   @apply w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-b focus:border-[#333333] focus:ring-0;
