@@ -1,12 +1,9 @@
 import { FcGoogle } from "react-icons/fc";
-// import useAuth from "../../hooks/useAuth";
-import { useLocation, useNavigate } from "react-router-dom";
+import { FaGithub } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-// import Button from "../button/Button";
-// import useToast from "../../hooks/useToast";
 import useAuth from "@/hooks/useAuth";
 import useToast from "@/hooks/useToast";
-import { Button } from "./ui/button";
 
 const SocialLogin = () => {
   const { showToast } = useToast();
@@ -37,14 +34,25 @@ const SocialLogin = () => {
   };
 
   return (
-    <>
-      <Button onClick={handleGoogleSignin}>
-        <div className="flex gap-x-2 items-center justify-center">
-          <h4 className="font-semibold">Google</h4>
-          <FcGoogle className="w-6 h-6" />
-        </div>
-      </Button>
-    </>
+    <div className="pt-1 flex flex-col items-center justify-center">
+      <div className="flex items-center justify-center gap-5">
+        <button
+          onClick={handleGoogleSignin}
+          className="flex gap-x-1.5 items-center justify-center"
+        >
+          <FcGoogle className="size-6" />
+          <p className="font-semibold">Google</p>
+        </button>
+
+        <button
+          onClick={handleGoogleSignin}
+          className="flex gap-x-1.5 items-center justify-center"
+        >
+          <FaGithub className="size-6" />
+          <p className="font-semibold">Github</p>
+        </button>
+      </div>
+    </div>
   );
 };
 

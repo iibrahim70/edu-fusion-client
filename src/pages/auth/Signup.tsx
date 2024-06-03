@@ -2,9 +2,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/SocialLogin";
-// import useToast from "@/hooks/useToast";
 import axios from "axios";
-import { Button } from "@/components/ui/button";
 import useToast from "@/hooks/useToast";
 import SignupFrom from "@/components/forms/SignupFrom";
 
@@ -65,18 +63,17 @@ const Signup = () => {
 
   return (
     <main className="flex justify-center items-center my-10 xl:my-20">
-      <div className="shadow-md rounded-md border p-8 w-full max-w-md mx-auto space-y-5">
+      <div className="shadow rounded-md border p-8 w-full max-w-md mx-auto space-y-3.5">
         <h3 className="text-center">Signup</h3>
         <SignupFrom />
 
-        <div className="flex flex-col items-center justify-center">
-          <SocialLogin />
-          <p>
-            Already Have An Account?{" "}
-            <Link to="/signin" className="text-red-500">
-              Signin
-            </Link>
-          </p>
+        <SocialLogin />
+
+        <div className="flex items-center gap-x-1.5">
+          <p>Already Have An Account?</p>
+          <Link to="/signin" className="text-blue-500">
+            Signin
+          </Link>
         </div>
       </div>
     </main>

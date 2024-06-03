@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -16,6 +17,7 @@ const SignupFrom = () => {
 
   const onSubmit = (data: FieldValues) => {
     console.log(data);
+    reset();
   };
 
   return (
@@ -57,7 +59,7 @@ const SignupFrom = () => {
         />
         {errors.password && (
           <span className="text-red-500 text-sm">
-            {errors.password.message}
+            {errors.password.message as ReactNode}
           </span>
         )}
       </div>
@@ -74,12 +76,14 @@ const SignupFrom = () => {
         />
         {errors.confirmPassword && (
           <span className="text-red-500 text-sm">
-            {errors.confirmPassword.message}
+            {errors.confirmPassword.message as ReactNode}
           </span>
         )}
       </div>
 
-      <Button type="submit">Signup</Button>
+      <Button type="submit" className="w-full">
+        Signup
+      </Button>
     </form>
   );
 };
