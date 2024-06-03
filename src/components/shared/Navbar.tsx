@@ -3,14 +3,15 @@ import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
-import Link from "next/link";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useTheme } from "next-themes";
+// import { useTheme } from "next-themes";
+import { Link } from "react-router-dom";
+import { useTheme } from "@/providers/themeProvider";
 
 const Navbar = () => {
   const [menuOpen, setIsMenuOpen] = useState(false);
@@ -35,14 +36,14 @@ const Navbar = () => {
     <nav className="shadow-md dark:border-b dark:border-dark-gray">
       <div className="section-wrapper flex items-center justify-between py-3">
         {/* left side */}
-        <Link href="/" className="font-bold text-xl">
-          Frozify
+        <Link to="/" className="font-bold text-xl">
+          Edu Fusion
         </Link>
 
         {/* middle */}
         <div className="max-md:hidden flex justify-between gap-5">
           {navItems?.map((item) => (
-            <Link key={item?.label} href={item?.pathName}>
+            <Link key={item?.label} to={item?.pathName}>
               {item?.label}
             </Link>
           ))}
@@ -107,7 +108,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <Link
                 key={item?.label}
-                href={item?.pathName}
+                to={item?.pathName}
                 onClick={() => setIsMenuOpen(false)}
                 className="px-4 py-2 rounded hover:bg-light-gray dark:hover:bg-jet-gray duration-300 transition-all cursor-pointer"
               >
