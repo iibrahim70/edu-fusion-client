@@ -31,6 +31,32 @@
   @apply px-5 lg:px-10 max-w-7xl mx-auto;
 }
 
+.hero-banner {
+  position: relative;
+  background-image: url("/src/assets/images/hero-banner.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  filter: blur(5px);
+  z-index: 1;
+}
+
+.hero-banner > * {
+  position: relative;
+  z-index: 2; /* Ensure content is above the overlay */
+}
+
 /* swiper pagination */
 .swiper-pagination {
   position: relative;
