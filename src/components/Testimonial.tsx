@@ -3,7 +3,6 @@ import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import Rating from "react-rating";
-import SectionTitle from "./SectionTitle";
 import "swiper/css";
 import "swiper/css/pagination";
 

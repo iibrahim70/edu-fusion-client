@@ -4,6 +4,7 @@ import { Link, useRouteError } from "react-router-dom";
 
 const ErrorPage = () => {
   const { error } = useRouteError();
+
   return (
     <div className="container flex flex-col items-center justify-center">
       <div className="max-w-lg text-center">
