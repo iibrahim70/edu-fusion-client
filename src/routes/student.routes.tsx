@@ -1,8 +1,6 @@
-import CreateSession from "@/pages/dashboard/tutor/CreateSession";
-import UploadMaterials from "@/pages/dashboard/tutor/UploadMaterials";
-import ViewMaterials from "@/pages/dashboard/tutor/ViewMaterials";
-import ViewNotes from "@/pages/dashboard/tutor/ViewNotes";
-import ViewSessions from "@/pages/dashboard/tutor/ViewSessions";
+import CreateNote from "@/pages/dashboard/student/CreateNote";
+import ManageNotes from "@/pages/dashboard/student/ManageNotes";
+import ViewSessions from "@/pages/dashboard/student/ViewSessions";
 
 const studentPaths = [
   {
@@ -10,20 +8,12 @@ const studentPaths = [
     element: <ViewSessions />,
   },
   {
-    path: "view-materials",
-    element: <ViewMaterials />,
+    path: "manage-notes",
+    element: <ManageNotes />,
   },
   {
-    path: "view-notes",
-    element: <ViewNotes />,
-  },
-  {
-    path: "create-session",
-    element: <CreateSession />,
-  },
-  {
-    path: "upload-materials",
-    element: <UploadMaterials />,
+    path: "create-note",
+    element: <CreateNote />,
   },
 ];
 
