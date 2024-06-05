@@ -2,11 +2,11 @@ import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-const Instructors = () => {
+const Tutors = () => {
   const { pathname } = useLocation();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["instructors"],
+    queryKey: ["tutors"],
     queryFn: () =>
       axios
         .get("https://dressx-server.vercel.app/instructors")
@@ -28,7 +28,7 @@ const Instructors = () => {
     );
 
   return (
-    <div
+    <section
       className={`${pathname === "/" ? "mt-10 xl:mt-20" : "my-10 xl:my-20"}`}
     >
       {/* {pathname === "/" && (
@@ -55,8 +55,8 @@ const Instructors = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Instructors;
+export default Tutors;

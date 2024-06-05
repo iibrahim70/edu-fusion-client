@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 import StudySession from "@/components/StudySession";
-import Instructors from "./Instructors";
+import Tutors from "@/components/Tutors";
 import Testimonial from "@/components/Testimonial";
 
 const Home = () => {
@@ -8,7 +8,7 @@ const Home = () => {
     <main className="space-y-10 lg:space-y-20">
       <Hero />
       <StudySession />
-      <Instructors />
+      <Tutors />
       <Testimonial />
     </main>
   );
