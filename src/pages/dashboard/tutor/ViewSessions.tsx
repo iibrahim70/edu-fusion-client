@@ -121,7 +121,7 @@ const ViewSessions = () => {
         ))}
       </div>
 
-      <>
+      <main>
         <div
           onClick={handleClose}
           className={clsx(
@@ -197,8 +197,8 @@ const ViewSessions = () => {
             </div>
           </form>
         </div>
-      </>
-    </div>
+      </main>
+    </main>
   );
 };
 
