@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import useAuth from "@/hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
 
-const PrivateRoute = ({ children }: { children: ReactNode }) => {
+const privateRoute = ({ children }: { children: ReactNode }) => {
   const { user } = useAuth();
   const location = useLocation();
 
@@ -13,4 +13,4 @@ const PrivateRoute = ({ children }: { children: ReactNode }) => {
   return <Navigate state={{ from: location }} to="/signin" replace></Navigate>;
 };
 
-export default PrivateRoute;
+export default privateRoute;
