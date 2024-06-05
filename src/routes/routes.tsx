@@ -54,18 +54,6 @@ const router = createBrowserRouter([
       //   element: <MyClasses />,
       // },
       // for students
-      {
-        path: "view-sessions",
-        element: <ViewSessions />,
-      },
-      {
-        path: "manage-notes",
-        element: <ManageNotes />,
-      },
-      {
-        path: "create-note",
-        element: <CreateNote />,
-      },
     ],
   },
   { path: "/signup", element: <Signup /> },
