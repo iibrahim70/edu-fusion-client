@@ -1,20 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import useAuth from '../../../hooks/useAuth';
-import { useForm } from 'react-hook-form';
-import clsx from 'clsx';
-import useToast from '../../../hooks/useToast';
-import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import React, { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import clsx from "clsx";
+import useToast from "../../../hooks/useToast";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const MyClasses = () => {
+const ViewSessions = () => {
   const { user } = useAuth();
   const { showToast } = useToast();
   const [isOpen, setIsOpen] = useState(false);
   const [axiosSecure] = useAxiosSecure();
-  const { data: myclasses = [], isLoading, refetch } = useQuery(['myClasses', user?.email], () => fetchMyClasses(user?.email));
+  const {
+    data: myclasses = [],
+    isLoading,
+    refetch,
+  } = useQuery(["myClasses", user?.email], () => fetchMyClasses(user?.email));
 
   const [classes, setClasses] = useState(null);
-  const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
 
   useEffect(() => {
     if (!isOpen) {
@@ -24,10 +33,10 @@ const MyClasses = () => {
 
   useEffect(() => {
     if (classes) {
-      setValue('className', classes.className);
-      setValue('availableSeats', classes.availableSeats);
-      setValue('price', classes.price);
-      setValue('imageUrl', classes.imageUrl);
+      setValue("className", classes.className);
+      setValue("availableSeats", classes.availableSeats);
+      setValue("price", classes.price);
+      setValue("imageUrl", classes.imageUrl);
     }
   }, [classes, setValue]);
 
@@ -47,19 +56,21 @@ const MyClasses = () => {
       const updatedData = { ...data };
 
       axiosSecure
-        .put(`/classes/update/${classes._id}`, updatedData, { headers: { 'Content-Type': 'application/json' } })
+        .put(`/classes/update/${classes._id}`, updatedData, {
+          headers: { "Content-Type": "application/json" },
+        })
         .then(() => {
           setIsOpen(false);
           refetch();
-          showToast('Class updated successfully!');
+          showToast("Class updated successfully!");
         })
         .catch((error) => {
           console.log(error);
-          showToast('Failed to update class!');
+          showToast("Failed to update class!");
         });
     } catch (error) {
       console.log(error);
-      showToast('Failed to update class!');
+      showToast("Failed to update class!");
     }
   };
 
@@ -76,22 +87,33 @@ const MyClasses = () => {
   if (isLoading) return <span className="loading loading-dots loading-md" />;
 
   return (
-    <div className="w-full p-20">
-      <h1 className="text-center pb-5">My Total Classes: {myclasses?.length}</h1>
+    <main className="w-full p-20">
+      <h1 className="text-center pb-5">
+        My Total Classes: {myclasses?.length}
+      </h1>
       <div className="grid grid-cols-2 gap-10">
         {myclasses.map((item, index) => (
           <div className="shadow-xl" key={index}>
             <figure>
-              <img className="h-[90%] w-full" src={item?.imageUrl} alt="Classes" />
+              <img
+                className="h-[90%] w-full"
+                src={item?.imageUrl}
+                alt="Classes"
+              />
             </figure>
             <div className="px-5 space-y-2 py-5">
               <h2>{item?.className}</h2>
               <p>Seats: {item?.availableSeats}</p>
               <p>Price: ${item?.price}</p>
               <p className="capitalize">Status: {item?.status}</p>
-              {item?.enrollStudent > 0 && <p>Enroll Student: {item?.enrollStudent}</p>}
+              {item?.enrollStudent > 0 && (
+                <p>Enroll Student: {item?.enrollStudent}</p>
+              )}
               {item?.feedback !== null && <p>Feedback: {item?.feedback}</p>}
-              <button onClick={() => handleUpdate(item)} className="primary-button">
+              <button
+                onClick={() => handleUpdate(item)}
+                className="primary-button"
+              >
                 Update
               </button>
             </div>
@@ -103,15 +125,15 @@ const MyClasses = () => {
         <div
           onClick={handleClose}
           className={clsx(
-            'fixed w-full h-full top-0 right-0 bottom-0 left-0 z-[1000] bg-white/20 backdrop-blur-lg',
-            isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+            "fixed w-full h-full top-0 right-0 bottom-0 left-0 z-[1000] bg-white/20 backdrop-blur-lg",
+            isOpen ? "opacity-100 visible" : "opacity-0 invisible"
           )}
         ></div>
 
         <div
           className={clsx(
-            'fixed w-full md:w-1/2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-10 bg-white shadow-xl z-[1001]',
-            isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+            "fixed w-full md:w-1/2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 p-10 bg-white shadow-xl z-[1001]",
+            isOpen ? "opacity-100 visible" : "opacity-0 invisible"
           )}
         >
           <div className="flex justify-end">
@@ -122,10 +144,12 @@ const MyClasses = () => {
               <label className="block mb-1 font-medium">Class Name</label>
               <input
                 className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]"
-                {...register('className', { required: true })}
+                {...register("className", { required: true })}
               />
               {errors.className && (
-                <span className="text-red-500 text-sm">Class Name is required</span>
+                <span className="text-red-500 text-sm">
+                  Class Name is required
+                </span>
               )}
             </div>
 
@@ -134,10 +158,12 @@ const MyClasses = () => {
               <input
                 className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]"
                 type="number"
-                {...register('availableSeats', { required: true })}
+                {...register("availableSeats", { required: true })}
               />
               {errors.availableSeats && (
-                <span className="text-red-500 text-sm">Enter Available Seats</span>
+                <span className="text-red-500 text-sm">
+                  Enter Available Seats
+                </span>
               )}
             </div>
 
@@ -146,7 +172,7 @@ const MyClasses = () => {
               <input
                 className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]"
                 type="number"
-                {...register('price', { required: true })}
+                {...register("price", { required: true })}
               />
               {errors.price && (
                 <span className="text-red-500 text-sm">Price is required</span>
@@ -157,15 +183,17 @@ const MyClasses = () => {
               <label className="block mb-1 font-medium">Image Url</label>
               <input
                 className="w-full border-b border-[#212121] py-2 px-3 focus:outline-none focus:border-[#2ECC71] focus:ring-2 focus:ring-[#bg-gradient-to-r from-transparent via-lime-700 to-cyan-600]"
-                {...register('imageUrl', { required: true })}
+                {...register("imageUrl", { required: true })}
               />
               {errors.imageUrl && (
-                <span className="text-red-500 text-sm">ImageUrl is required</span>
+                <span className="text-red-500 text-sm">
+                  ImageUrl is required
+                </span>
               )}
             </div>
 
             <div className="text-right">
-              <input className='primary-button' type="submit" value="Update" />
+              <input className="primary-button" type="submit" value="Update" />
             </div>
           </form>
         </div>
@@ -174,4 +202,4 @@ const MyClasses = () => {
   );
 };
 
-export default MyClasses;
+export default ViewSessions;

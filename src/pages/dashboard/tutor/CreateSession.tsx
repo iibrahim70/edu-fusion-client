@@ -4,7 +4,7 @@ import useToast from "../../../hooks/useToast";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const AddClass = () => {
+const CreateSession = () => {
   const { user } = useAuth();
   const { showToast } = useToast();
   const {
@@ -59,7 +59,7 @@ const AddClass = () => {
   };
 
   return (
-    <div className="w-[70%] mx-auto my-10 md:my-20">
+    <main className="w-[70%] mx-auto my-10 md:my-20">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-4">
           <label className="block mb-1 font-medium">Instructor Name</label>
@@ -130,8 +130,8 @@ const AddClass = () => {
 
         <input type="submit" className="primary-button w-full" value="Add" />
       </form>
-    </div>
+    </main>
   );
 };
 
-export default AddClass;
+export default CreateSession;
