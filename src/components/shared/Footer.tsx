@@ -66,7 +66,7 @@ const Footer = () => {
 
       <div className="bg-black/80 py-5">
         <div className="section-wrapper flex flex-wrap items-center justify-between gap-5 lg:gap-10">
-          <p>All Rights Reserved. © 2024 Ibrahim Khalil</p>
+          <p>All Rights Reserved. © 2024 Edu Fusion</p>
 
           <div className="flex items-center gap-5">
             <p>Payment Method</p>
