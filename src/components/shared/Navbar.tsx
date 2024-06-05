@@ -21,8 +21,8 @@ const Navbar = () => {
     { label: "Home", pathName: "/" },
     { label: "Study Session", pathName: "/study-sessions" },
     { label: "Tutors", pathName: "/tutors" },
-    { label: "About Us", pathName: "/" },
-    { label: "Contact Us", pathName: "/" },
+    { label: "About Us", pathName: "/about-us" },
+    { label: "Contact Us", pathName: "/contact-us" },
   ];
 
   // stop scrolling when nav is open on small devices
