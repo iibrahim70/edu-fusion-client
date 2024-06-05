@@ -1,26 +1,38 @@
 import { useEffect, useState } from "react";
-import useAdmin from "../../hooks/useAdmin";
-import useInstructor from "../../hooks/useInstructor";
-import { Link, Outlet } from "react-router-dom";
+import { ISidebarItem } from "@/types";
+import sidebarItemsGenerator from "@/helpers/sidebarItemsGenerator";
+import { userRole } from "@/constants";
+import adminPaths from "@/routes/admin.routes";
+import tutorPaths from "@/routes/tutor.routes";
+import studentPaths from "@/routes/student.routes";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { IoClose, IoMenu } from "react-icons/io5";
 
-const navItems = [
-  {
-    label: "Home",
-    pathName: "/dashboard",
-  },
-  {
-    label: "All Products",
-    pathName: "/dashboard/all-products",
-  },
-];
+const user = {
+  role: userRole.ADMIN, // Set the user role statically
+};
+
+let sidebarItems: ISidebarItem[];
+
+switch (user!.role) {
+  case userRole?.ADMIN:
+    sidebarItems = sidebarItemsGenerator(adminPaths, userRole?.ADMIN);
+    break;
+  case userRole?.TUTOR:
+    sidebarItems = sidebarItemsGenerator(tutorPaths, userRole?.TUTOR);
+    break;
+  case userRole?.STUDENT:
+    sidebarItems = sidebarItemsGenerator(studentPaths, userRole?.STUDENT);
+    break;
+
+  default:
+    break;
+}
 
 const DashboardLayout = () => {
   const [menuOpen, setIsMenuOpen] = useState(false);
-  // const pathName = usePathname();
-  const [isAdmin, isAdminLoading] = useAdmin();
-  const [isInstructor, isInstructorLoading] = useInstructor();
+  const location = useLocation();
 
   // if (isAdminLoading || isInstructorLoading)
   //   return (
@@ -47,16 +59,16 @@ const DashboardLayout = () => {
         <hr className="w-[90%] mx-auto my-5" />
 
         <div className="flex flex-col items-start space-y-1.5 w-full">
-          {navItems?.map((item) => (
+          {sidebarItems?.map((item) => (
             <Link
               key={item?.label}
-              to={item?.pathName}
+              to={item?.path}
               className={cn(
-                "w-full py-2 px-3 rounded-md duration-150 ease-in-out bg-transparent whitespace-nowrap"
+                "w-full py-2 px-3 rounded-md duration-150 ease-in-out bg-transparent whitespace-nowrap",
 
-                // pathName === item?.pathName
-                //   ? "bg-blue-600 hover:bg-blue-600/95"
-                //   : "hover:bg-black/85"
+                location?.pathname === item?.path
+                  ? "bg-blue-600 hover:bg-blue-600/95"
+                  : "hover:bg-black/85"
               )}
             >
               {item?.label}
@@ -108,10 +120,10 @@ const DashboardLayout = () => {
 
         {/* navigation items */}
         <div className="flex flex-col gap-1">
-          {navItems.map((item) => (
+          {sidebarItems?.map((item) => (
             <Link
               key={item?.label}
-              to={item?.pathName}
+              to={item?.path}
               onClick={() => setIsMenuOpen(false)}
               className="px-4 py-2 rounded hover:bg-light-gray dark:hover:bg-jet-gray duration-300 transition-all cursor-pointer"
             >

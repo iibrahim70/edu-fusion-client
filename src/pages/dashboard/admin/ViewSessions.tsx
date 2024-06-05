@@ -20,14 +20,21 @@ const ViewSessions = () => {
     formState: { errors },
     reset,
   } = useForm();
+
   const {
     data: classes = [],
+    error,
     isLoading,
     refetch,
-  } = useQuery(["classes"], async () => {
-    const res = await axiosSecure.get("/classes");
-    return res.data;
+  } = useQuery({
+    queryKey: ["classes"],
+    queryFn: async () => {
+      const res = await axios.get("/classes");
+      return res.data;
+    },
   });
+
+  console.log(classes);
 
   const approveClass = useMutation((itemId) =>
     axiosSecure.put(`/classes/approve/${itemId}`)
@@ -149,6 +156,7 @@ const ViewSessions = () => {
   };
 
   if (isLoading) return <span className="loading loading-dots loading-md" />;
+  if (error) return <span className="loading loading-dots loading-md" />;
 
   return (
     <main className="w-full py-20">

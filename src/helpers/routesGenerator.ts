@@ -10,10 +10,10 @@ const routeGenerator = (items: IUserPath[]) => {
     }
 
     if (item?.children) {
-      item?.children.forEach((child) => {
+      item?.children?.forEach((child) => {
         acc?.push({
-          path: child.path!,
-          element: child.element,
+          path: child?.path,
+          element: child?.element,
         });
       });
     }

@@ -6,22 +6,27 @@ import ViewSessions from "@/pages/dashboard/tutor/ViewSessions";
 
 const tutorPaths = [
   {
+    label: "View Sessions",
     path: "view-sessions",
     element: <ViewSessions />,
   },
   {
+    label: "View Materials",
     path: "view-materials",
     element: <ViewMaterials />,
   },
   {
+    label: "View Notes",
     path: "view-notes",
     element: <ViewNotes />,
   },
   {
+    label: "Create Session",
     path: "create-session",
     element: <CreateSession />,
   },
   {
+    label: "Upload Materials",
     path: "upload-materials",
     element: <UploadMaterials />,
   },
