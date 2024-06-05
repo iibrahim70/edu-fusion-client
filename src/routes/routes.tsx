@@ -4,6 +4,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import Home from "@/pages/Home";
 import Signin from "@/pages/auth/Signin";
 import Signup from "@/pages/auth/Signup";
+import Tutors from "@/pages/Tutors";
 
 const router = createBrowserRouter([
   {
@@ -15,14 +16,15 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
+      {
+        path: "/tutors",
+        element: <Tutors />,
+      },
       //     {
       //       path: "/instructors",
       //       element: <Instructors />,
       //     },
-      //     {
-      //       path: "/classes",
-      //       element: <Classes />,
-      //     },
+
       //   ],
       // },
       // {

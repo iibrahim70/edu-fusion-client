@@ -1,10 +1,7 @@
-import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 const Tutors = () => {
-  const { pathname } = useLocation();
-
   const { isLoading, error, data } = useQuery({
     queryKey: ["tutors"],
     queryFn: () =>
@@ -23,39 +20,29 @@ const Tutors = () => {
   if (error)
     return (
       <div className="flex items-center justify-center min-h-screen">
-        Error: {error.message}
+        Error: {error?.message}
       </div>
     );
 
   return (
-    <section
-      className={`${pathname === "/" ? "mt-10 xl:mt-20" : "my-10 xl:my-20"}`}
-    >
-      {/* {pathname === "/" && (
-        <SectionTitle
-          title="Meet Our Expert Instructors"
-          description="Get to know the talented and experienced instructors who will guide you on your fashion design journey. Our team of dedicated professionals brings a wealth of industry knowledge and a passion for teaching. Learn from the best and gain insights that will help you excel in the world of fashion design."
-        />
-      )} */}
+    <main className="section-wrapper py-10 lg:py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        {data?.map((item) => (
+          <div key={item._id} className="shadow rounded-md border">
+            <img
+              className="h-[220px] w-full object-cover rounded-t-md"
+              src={item?.picture}
+              alt="Tutor Image"
+            />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-        {data.map((item) => (
-          <div key={item._id} className="shadow-xl rounded">
-            <figure>
-              <img
-                className="h-[220px] w-full object-cover"
-                src={item?.picture}
-                alt="Instructor Image"
-              />
-            </figure>
-            <div className="px-5 space-y-2 py-5">
-              <h3 className="text-lg font-medium truncate">{item?.name}</h3>
-              <p>Email: {item?.email}</p>
+            <div className="p-5 space-y-1.5">
+              <h5>{item?.name}</h5>
+              <p>{item?.email}</p>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </main>
   );
 };
 

@@ -2,9 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import SectionTitle from "./SectionTitle";
 
-const Instructors = () => {
+const Tutors = () => {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["instructors"],
+    queryKey: ["tutors"],
     queryFn: () =>
       axios
         .get("https://dressx-server.vercel.app/instructors")
@@ -52,4 +52,4 @@ const Instructors = () => {
   );
 };
 
-export default Instructors;
+export default Tutors;
