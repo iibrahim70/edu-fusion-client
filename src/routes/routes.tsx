@@ -7,9 +7,10 @@ import Signin from "@/pages/auth/Signin";
 import Signup from "@/pages/auth/Signup";
 import Tutors from "@/pages/Tutors";
 import StudySession from "@/pages/StudySession";
-import ViewSessions from "@/pages/dashboard/student/ViewSessions";
-import ManageNotes from "@/pages/dashboard/student/ManageNotes";
-import CreateNote from "@/pages/dashboard/student/CreateNote";
+import routeGenerator from "@/helpers/routesGenerator";
+import adminPaths from "./admin.routes";
+import tutorPaths from "./tutor.routes";
+import studentPaths from "./student.routes";
 
 const router = createBrowserRouter([
   {
@@ -31,31 +32,25 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  // dashboard routes
   {
-    path: "/dashboard",
+    path: "/admin/dashboard",
     element: <DashboardLayout />,
-    children: [
-      // admin only
-      // {
-      //   path: "manage-users",
-      //   element: <ManageUsers />,
-      // },
-      // {
-      //   path: "manage-classes",
-      //   element: <ManageClasses />,
-      // },
-      // // instructor only
-      // {
-      //   path: "add-class",
-      //   element: <AddClass />,
-      // },
-      // {
-      //   path: "my-classes",
-      //   element: <MyClasses />,
-      // },
-      // for students
-    ],
+    children: routeGenerator(adminPaths),
   },
+  {
+    path: "/tutor/dashboard",
+    element: <DashboardLayout />,
+    children: routeGenerator(tutorPaths),
+  },
+  {
+    path: "/student/dashboard",
+    element: <DashboardLayout />,
+    children: routeGenerator(studentPaths),
+  },
+
+  // auth routes
   { path: "/signup", element: <Signup /> },
   { path: "/signin", element: <Signin /> },
 ]);
