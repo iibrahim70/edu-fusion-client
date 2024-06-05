@@ -17,7 +17,7 @@ const Footer = () => {
     <footer className="bg-black/90 text-white/90">
       <div className="section-wrapper py-10 flex flex-col lg:flex-row justify-between gap-10">
         <div className="lg:w-2/5 space-y-5">
-          <h1>Frozify</h1>
+          <h3>Edu Fusion</h3>
           <p>Got Question? Call us 24/7</p>
           <p className="font-semibold">(+880) 123456789</p>
           <p>
@@ -27,7 +27,7 @@ const Footer = () => {
 
         <div className="lg:w-3/5 flex flex-col md:flex-row justify-between gap-10">
           <div className="space-y-3">
-            <h4>Company</h4>
+            <h5>Company</h5>
 
             <div className="space-y-2">
               <p>About Us</p>
@@ -39,7 +39,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-3">
-            <h4>My Account</h4>
+            <h5>My Account</h5>
 
             <div className="space-y-2">
               <p>Track My Order</p>
@@ -51,7 +51,7 @@ const Footer = () => {
           </div>
 
           <div className="space-y-3">
-            <h4>Customer Service</h4>
+            <h5>Customer Service</h5>
 
             <div className="space-y-2">
               <p>Payment Methods</p>

@@ -5,11 +5,11 @@ import Testimonial from "@/components/Testimonial";
 
 const Home = () => {
   return (
-    <main className="space-y-10 lg:space-y-20">
+    <main className="space-y-10 lg:space-y-20 mb-10 lg:mb-20">
       <Hero />
       <StudySession />
       <Tutors />
-      <Testimonial />
+      {/* <Testimonial /> */}
     </main>
   );
 };

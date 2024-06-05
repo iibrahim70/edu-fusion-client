@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import StudySessionCard from "./StudySessionCard";
+import SectionTitle from "./SectionTitle";
 
 const StudySession = () => {
   const { isLoading, error, data } = useQuery({
@@ -30,6 +31,11 @@ const StudySession = () => {
 
   return (
     <section className="section-wrapper">
+      <SectionTitle
+        title="Explore Our Courses"
+        description="Discover courses to boost your skills. Each session offers actionable insights and an opportunity to purchase."
+      />
+
       <StudySessionCard data={slicedData} />
     </section>
   );
