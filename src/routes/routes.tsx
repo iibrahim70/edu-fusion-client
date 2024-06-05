@@ -5,6 +5,7 @@ import Home from "@/pages/Home";
 import Signin from "@/pages/auth/Signin";
 import Signup from "@/pages/auth/Signup";
 import Tutors from "@/pages/Tutors";
+import StudySession from "@/pages/StudySession";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/study-sessions",
+        element: <StudySession />,
       },
       {
         path: "/tutors",
