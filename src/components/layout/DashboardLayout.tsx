@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ISidebarItem } from "@/types";
+import { TSidebarItem } from "@/types";
 import sidebarItemsGenerator from "@/helpers/sidebarItemsGenerator";
 import { userRole } from "@/constants";
 import adminPaths from "@/routes/admin.routes";
@@ -13,7 +13,7 @@ const user = {
   role: userRole.ADMIN, // Set the user role statically
 };
 
-let sidebarItems: ISidebarItem[];
+let sidebarItems: TSidebarItem[];
 
 switch (user!.role) {
   case userRole?.ADMIN:
@@ -62,7 +62,7 @@ const DashboardLayout = () => {
           {sidebarItems?.map((item) => (
             <Link
               key={item?.label}
-              to={item?.path}
+              to={item?.path as string}
               className={cn(
                 "w-full py-2 px-3 rounded-md duration-150 ease-in-out bg-transparent whitespace-nowrap",
 
@@ -123,7 +123,7 @@ const DashboardLayout = () => {
           {sidebarItems?.map((item) => (
             <Link
               key={item?.label}
-              to={item?.path}
+              to={item?.path as string}
               onClick={() => setIsMenuOpen(false)}
               className="px-4 py-2 rounded hover:bg-light-gray dark:hover:bg-jet-gray duration-300 transition-all cursor-pointer"
             >

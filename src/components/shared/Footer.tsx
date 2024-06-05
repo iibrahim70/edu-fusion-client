@@ -1,18 +1,18 @@
-import paypalIcon from "@/assets/icons/paypal.png";
-import stripeIcon from "@/assets/icons/stripe.png";
-import visaIcon from "@/assets/icons/visa.png";
-import mastercardIcon from "@/assets/icons/mastercard.png";
-import americanExpressIcon from "@/assets/icons/american-express.png";
+import paypalIcon from "../../assets/icons/paypal.png";
+import stripeIcon from "../../assets/icons/stripe.png";
+import visaIcon from "../../assets/icons/visa.png";
+import mastercardIcon from "../../assets/icons/mastercard.png";
+import americanExpressIcon from "../../assets/icons/american-express.png";
+
+const iconArray = [
+  mastercardIcon,
+  americanExpressIcon,
+  visaIcon,
+  stripeIcon,
+  paypalIcon,
+];
 
 const Footer = () => {
-  const iconArray = [
-    mastercardIcon,
-    americanExpressIcon,
-    visaIcon,
-    stripeIcon,
-    paypalIcon,
-  ];
-
   return (
     <footer className="bg-black/90 text-white/90">
       <div className="section-wrapper py-10 flex flex-col lg:flex-row justify-between gap-10">
