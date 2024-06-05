@@ -1,13 +1,13 @@
 import Hero from "@/components/Hero";
-import Classes from "./Classes";
+import StudySession from "@/components/StudySession";
 import Instructors from "./Instructors";
 import Testimonial from "@/components/Testimonial";
 
 const Home = () => {
   return (
-    <main>
+    <main className="space-y-10 lg:space-y-20">
       <Hero />
-      <Classes />
+      <StudySession />
       <Instructors />
       <Testimonial />
     </main>
