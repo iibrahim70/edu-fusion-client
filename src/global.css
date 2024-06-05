@@ -34,6 +34,7 @@
   @apply px-5 lg:px-10 max-w-7xl mx-auto;
 }
 
+/* parallex effect */
 .hero-banner {
   position: relative;
   background-image: url("/src/assets/images/hero-banner.jpg");
@@ -64,12 +65,4 @@
 .swiper-pagination {
   position: relative;
   bottom: -5px !important;
-}
-
-.primary-button {
-  @apply inline-flex items-center justify-center capitalize lg:text-base lg:px-6 md:px-4 px-3 lg:py-3 py-2 font-medium text-white transition hover:drop-shadow-2xl rounded border-none shadow-xl md:mb-0 bg-[#4D4376] hover:bg-[#5E548E] duration-700;
-}
-
-.disabled-button {
-  @apply inline-flex items-center justify-center capitalize lg:text-base lg:px-6 md:px-4 px-3 lg:py-3 py-2 font-medium text-white transition rounded border-none shadow-xl md:mb-0 bg-[#ddd] duration-700 cursor-not-allowed;
 }

@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import StudySession from "@/components/StudySession";
 import Tutors from "@/components/Tutors";
-import Testimonial from "@/components/Testimonial";
+import Testimonials from "@/components/Testimonials";
 
 const Home = () => {
   return (
@@ -9,7 +9,7 @@ const Home = () => {
       <Hero />
       <StudySession />
       <Tutors />
-      {/* <Testimonial /> */}
+      <Testimonials />
     </main>
   );
 };
