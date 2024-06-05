@@ -2,35 +2,21 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 import ErrorPage from "@/pages/ErrorPage";
-import Home from "@/pages/Home";
-import Signin from "@/pages/auth/Signin";
-import Signup from "@/pages/auth/Signup";
-import Tutors from "@/pages/Tutors";
-import StudySession from "@/pages/StudySession";
 import routeGenerator from "@/helpers/routesGenerator";
+import mainPaths from "./main.routes";
 import adminPaths from "./admin.routes";
 import tutorPaths from "./tutor.routes";
 import studentPaths from "./student.routes";
+import Signup from "@/pages/auth/Signup";
+import Signin from "@/pages/auth/Signin";
 
 const router = createBrowserRouter([
+  // main routes
   {
     path: "/",
     element: <MainLayout />,
     errorElement: <ErrorPage />,
-    children: [
-      {
-        index: true,
-        element: <Home />,
-      },
-      {
-        path: "/study-sessions",
-        element: <StudySession />,
-      },
-      {
-        path: "/tutors",
-        element: <Tutors />,
-      },
-    ],
+    children: routeGenerator(mainPaths),
   },
 
   // dashboard routes
