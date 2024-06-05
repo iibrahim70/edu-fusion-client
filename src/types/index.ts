@@ -12,8 +12,6 @@ export interface IRoute {
   element: ReactNode;
 }
 
-export interface ISidebarItem {
-  label: string;
-  path: string;
-  children?: ISidebarItem[];
-}
+export type TSidebarItem =
+  | { label: string; path: string; children?: TSidebarItem[] }
+  | undefined;

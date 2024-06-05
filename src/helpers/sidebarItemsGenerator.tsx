@@ -1,7 +1,6 @@
 import { IUserPath, TSidebarItem } from "@/types";
 
 const sidebarItemsGenerator = (items: IUserPath[], role: string) => {
-  console.log(items, role);
   const sidebarItems = items?.reduce((acc: TSidebarItem[], item) => {
     if (item?.path && item?.label) {
       acc.push({
@@ -12,13 +11,13 @@ const sidebarItemsGenerator = (items: IUserPath[], role: string) => {
 
     if (item?.children) {
       acc.push({
-        key: item?.label,
-        label: item?.label,
+        label: item?.label as string,
+        path: item?.path,
         children: item?.children?.map((child) => {
-          if (child.label) {
+          if (child?.label) {
             return {
-              label: child.label,
-              path: `/${role}/${child.path}`,
+              label: child?.label,
+              path: `/${role}/dashboard/${child?.path}`,
             };
           }
         }),
