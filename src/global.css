@@ -25,6 +25,9 @@
   h5 {
     @apply text-xl font-bold;
   }
+  h6 {
+    @apply text-lg font-medium;
+  }
 }
 
 .section-wrapper {
