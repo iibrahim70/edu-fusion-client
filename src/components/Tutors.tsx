@@ -25,6 +25,9 @@ const Tutors = () => {
       </div>
     );
 
+  // slice the data to get the first 6 items
+  const slicedData = data?.slice(0, 6) || [];
+
   return (
     <section className="section-wrapper">
       <SectionTitle
@@ -33,7 +36,7 @@ const Tutors = () => {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        {data?.map((item) => (
+        {slicedData?.map((item) => (
           <div key={item._id} className="shadow rounded-md border">
             <img
               className="h-[220px] w-full object-cover rounded-t-md"
