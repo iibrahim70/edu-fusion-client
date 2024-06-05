@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import StudySessionCard from "@/components/StudySessionCard";
+import StudySessionCard from "@/components/cards/StudySessionCard";
 
 const StudySession = () => {
   const { isLoading, error, data } = useQuery({
@@ -26,9 +26,9 @@ const StudySession = () => {
     );
 
   return (
-    <section className="section-wrapper py-10">
+    <main className="section-wrapper py-10">
       <StudySessionCard data={data} />
-    </section>
+    </main>
   );
 };
 
