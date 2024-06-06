@@ -1,36 +1,51 @@
+import { useAuth } from "@/providers/authProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import useToast from "@/hooks/useToast";
-import { useAuth } from "@/providers/authProvider";
 
 const SocialLogin = () => {
-  const { showToast } = useToast();
   const { googleSignIn, githubSignIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location?.state?.from?.pathname || "/";
 
-  const handleGoogleSignin = () => {
-    googleSignIn()
-      .then((res) => {
-        const loggedInUser = res.user;
-        navigate(from, { replace: true });
-        showToast("User Signed In Successfully!");
+  const handleGoogleSignin = async () => {
+    try {
+      const res = await googleSignIn();
+      const singedInUser = res?.user;
+      console.log(singedInUser);
 
-        // send user info to the database
-        const saveUser = {
-          name: loggedInUser.displayName,
-          email: loggedInUser.email,
-          role: "student",
-        };
-        axios.post("https://dressx-server.vercel.app/users", saveUser);
-      })
-      .catch((err) => {
-        showToast(err.message);
+      navigate(from, { replace: true });
+      toast.success("User Signed In Successfully!");
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err?.message);
         console.error(err);
-      });
+      } else {
+        toast.error("An unknown error occurred");
+        console.error("An unknown error occurred", err);
+      }
+    }
+  };
+
+  const handleGithubSignin = async () => {
+    try {
+      const res = await githubSignIn();
+      const singedInUser = res?.user;
+      console.log(singedInUser);
+
+      navigate(from, { replace: true });
+      toast.success("User Signed In Successfully!");
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err?.message);
+        console.error(err);
+      } else {
+        toast.error("An unknown error occurred");
+        console.error("An unknown error occurred", err);
+      }
+    }
   };
 
   return (
@@ -45,7 +60,7 @@ const SocialLogin = () => {
         </button>
 
         <button
-          onClick={handleGoogleSignin}
+          onClick={handleGithubSignin}
           className="flex gap-x-1.5 items-center justify-center"
         >
           <FaGithub className="size-6" />
