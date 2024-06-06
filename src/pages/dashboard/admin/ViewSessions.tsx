@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import useToast from "../../../hooks/useToast";
 import { AiFillCloseSquare } from "react-icons/ai";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const ViewSessions = () => {
   const { showToast } = useToast();

@@ -1,7 +1,7 @@
-import useAdmin from "../../hooks/useAdmin";
-import useInstructor from "../../hooks/useInstructor";
 import { BsFillPeopleFill } from "react-icons/bs";
 import { Button } from "../ui/button";
+import useAdmin from "@/hooks/useAdmin";
+import useInstructor from "@/hooks/useInstructor";
 
 const StudySessionCard = ({ data }) => {
   const [isAdmin] = useAdmin();

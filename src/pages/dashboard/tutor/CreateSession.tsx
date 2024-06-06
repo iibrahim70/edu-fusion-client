@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import useToast from "../../../hooks/useToast";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useAuth } from "@/providers/authProvider";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const CreateSession = () => {
   const { user } = useAuth();

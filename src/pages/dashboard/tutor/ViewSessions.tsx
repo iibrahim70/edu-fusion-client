@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
 import useToast from "../../../hooks/useToast";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useAuth } from "@/providers/authProvider";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const ViewSessions = () => {
   const { user } = useAuth();
