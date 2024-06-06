@@ -4,6 +4,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import toast from "react-hot-toast";
 
 const SigninFrom = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -11,13 +12,16 @@ const SigninFrom = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data: FieldValues) => {
+    try {
+      console.log(data);
+      toast.success("Login successful!");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
