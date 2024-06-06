@@ -1,13 +1,23 @@
 import { ReactNode } from "react";
-import { FieldValues, useForm } from "react-hook-form";
+import { Controller, FieldValues, useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
+import {
+  SelectLabel,
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectTrigger,
+  SelectValue,
+  SelectItem,
+} from "../ui/select";
 
 const SignupFrom = () => {
   const {
     register,
     handleSubmit,
+    control,
     watch,
     reset,
     formState: { errors },
@@ -24,7 +34,7 @@ const SignupFrom = () => {
     <form className="space-y-3.5" onSubmit={handleSubmit(onSubmit)}>
       <div className="space-y-2.5">
         <Label className="font-medium">Full Name</Label>
-        <Input {...register("fullName", { required: true })} />
+        <Input type="text" {...register("fullName", { required: true })} />
         {errors?.name && (
           <span className="text-red-500 text-sm">Name is required</span>
         )}
@@ -32,9 +42,43 @@ const SignupFrom = () => {
 
       <div className="space-y-2.5">
         <Label className="font-medium">Email</Label>
-        <Input {...register("email", { required: true })} />
+        <Input type="email" {...register("email", { required: true })} />
         {errors?.email && (
           <span className="text-red-500 text-sm">Email is required</span>
+        )}
+      </div>
+
+      <div className="space-y-2.5">
+        <Label className="font-medium">Join As</Label>
+        <Controller
+          name="role"
+          control={control}
+          rules={{ required: "Please select a role" }}
+          render={({ field }) => (
+            <Select onValueChange={field?.onChange}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a role" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Role</SelectLabel>
+                  <SelectItem value="student">Student</SelectItem>
+                  <SelectItem value="tutor">Tutor</SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          )}
+        />
+        {errors?.role && (
+          <span className="text-red-500 text-sm">Please select a Role</span>
+        )}
+      </div>
+
+      <div className="space-y-2.5">
+        <Label className="font-medium">Image URL</Label>
+        <Input type="url" {...register("avatar", { required: true })} />
+        {errors?.avatar && (
+          <span className="text-red-500 text-sm">Image URL is required</span>
         )}
       </div>
 
@@ -46,7 +90,7 @@ const SignupFrom = () => {
             required: "Password is required",
             validate: {
               minLength: (value) =>
-                value.length >= 8 ||
+                value?.length >= 8 ||
                 "Password must be at least 6 characters long!",
               capitalLetter: (value) =>
                 /[A-Z]/.test(value) ||
@@ -57,9 +101,9 @@ const SignupFrom = () => {
             },
           })}
         />
-        {errors.password && (
+        {errors?.password && (
           <span className="text-red-500 text-sm">
-            {errors.password.message as ReactNode}
+            {errors?.password?.message as ReactNode}
           </span>
         )}
       </div>
@@ -74,9 +118,9 @@ const SignupFrom = () => {
               value === password || "Passwords do not match!",
           })}
         />
-        {errors.confirmPassword && (
+        {errors?.confirmPassword && (
           <span className="text-red-500 text-sm">
-            {errors.confirmPassword.message as ReactNode}
+            {errors?.confirmPassword?.message as ReactNode}
           </span>
         )}
       </div>
