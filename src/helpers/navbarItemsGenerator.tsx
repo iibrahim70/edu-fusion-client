@@ -1,11 +1,11 @@
 import { IUserPath, TBarItem } from "@/types";
 
-const sidebarItemsGenerator = (items: IUserPath[], role: string) => {
-  const sidebarItems = items?.reduce((acc: TBarItem[], item) => {
+const navbarItemsGenerator = (items: IUserPath[]) => {
+  const navbarItems = items?.reduce((acc: TBarItem[], item) => {
     if (item?.path && item?.label) {
       acc.push({
         label: item?.label,
-        path: `/${role}/dashboard/${item?.path}`,
+        path: item?.path,
       });
     }
 
@@ -17,7 +17,7 @@ const sidebarItemsGenerator = (items: IUserPath[], role: string) => {
           if (child?.label) {
             return {
               label: child?.label,
-              path: `/${role}/dashboard/${child?.path}`,
+              path: child?.path,
             };
           }
         }),
@@ -27,7 +27,7 @@ const sidebarItemsGenerator = (items: IUserPath[], role: string) => {
     return acc;
   }, []);
 
-  return sidebarItems;
+  return navbarItems;
 };
 
-export default sidebarItemsGenerator;
+export default navbarItemsGenerator;

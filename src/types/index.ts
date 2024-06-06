@@ -12,6 +12,6 @@ export interface IRoute {
   element: ReactNode;
 }
 
-export type TSidebarItem =
-  | { label: string; path: string; children?: TSidebarItem[] }
+export type TBarItem =
+  | { label: string; path: string; children?: TBarItem[] }
   | undefined;
