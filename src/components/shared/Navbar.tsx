@@ -11,19 +11,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import mainPaths from "@/routes/main.routes";
+import navbarItemsGenerator from "@/helpers/navbarItemsGenerator";
+import { useAuth } from "@/providers/authProvider";
 
 const Navbar = () => {
+  const navItems = navbarItemsGenerator(mainPaths);
+  const { user, Logout } = useAuth();
   const [menuOpen, setIsMenuOpen] = useState(false);
   const { setTheme } = useTheme();
-
-  // navigation items as an array of objects
-  const navItems = [
-    { label: "Home", pathName: "/" },
-    { label: "Study Session", pathName: "/study-sessions" },
-    { label: "Tutors", pathName: "/tutors" },
-    { label: "About Us", pathName: "/about-us" },
-    { label: "Contact Us", pathName: "/contact-us" },
-  ];
 
   // stop scrolling when nav is open on small devices
   useEffect(() => {
@@ -41,7 +37,7 @@ const Navbar = () => {
         {/* middle */}
         <div className="max-md:hidden flex justify-between gap-5">
           {navItems?.map((item) => (
-            <Link key={item?.label} to={item?.pathName}>
+            <Link key={item?.label} to={item?.path as string}>
               {item?.label}
             </Link>
           ))}
@@ -70,9 +66,13 @@ const Navbar = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Link to="/signin" className={buttonVariants()}>
-            Signin
-          </Link>
+          {user ? (
+            <Button onClick={Logout}>Logout</Button>
+          ) : (
+            <Link to="/signin" className={buttonVariants()}>
+              Signin
+            </Link>
+          )}
 
           <button onClick={() => setIsMenuOpen(true)} className="md:hidden">
             <IoMenu className="size-6" />
@@ -110,7 +110,7 @@ const Navbar = () => {
             {navItems.map((item) => (
               <Link
                 key={item?.label}
-                to={item?.pathName}
+                to={item?.path as string}
                 onClick={() => setIsMenuOpen(false)}
                 className="px-4 py-2 rounded hover:bg-light-gray dark:hover:bg-jet-gray duration-300 transition-all cursor-pointer"
               >

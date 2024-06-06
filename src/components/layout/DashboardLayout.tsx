@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TSidebarItem } from "@/types";
+import { TBarItem } from "@/types";
 import sidebarItemsGenerator from "@/helpers/sidebarItemsGenerator";
 import { userRole } from "@/constants";
 import adminPaths from "@/routes/admin.routes";
@@ -13,7 +13,7 @@ const user = {
   role: userRole.ADMIN, // Set the user role statically
 };
 
-let sidebarItems: TSidebarItem[];
+let sidebarItems: TBarItem[];
 
 switch (user!.role) {
   case userRole?.ADMIN:
