@@ -5,9 +5,16 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "@/providers/authProvider";
 
 const SigninFrom = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const { signIn } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -17,10 +24,17 @@ const SigninFrom = () => {
 
   const onSubmit = async (data: FieldValues) => {
     try {
-      console.log(data);
-      toast.success("Login successful!");
-    } catch (error) {
-      console.error(error);
+      await signIn(data?.email, data?.password);
+      navigate(from, { replace: true });
+      toast.success("User Signed In Successfully!");
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err?.message);
+        console.error(err);
+      } else {
+        toast.error("An unknown error occurred");
+        console.error("An unknown error occurred", err);
+      }
     }
   };
 
@@ -43,7 +57,10 @@ const SigninFrom = () => {
           />
 
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center">
-            <button onClick={() => setShowPassword((prev) => !prev)}>
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
               {showPassword ? <BsEyeFill /> : <BsEyeSlashFill />}
             </button>
           </div>

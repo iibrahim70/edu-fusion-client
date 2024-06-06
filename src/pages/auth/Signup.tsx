@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../components/SocialLogin";
 import axios from "axios";
 import useToast from "@/hooks/useToast";
 import SignupFrom from "@/components/forms/SignupFrom";
+import { useAuth } from "@/providers/authProvider";
 
 const Signup = () => {
   const { createUser, updateUserProfile } = useAuth();

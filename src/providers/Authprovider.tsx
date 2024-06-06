@@ -1,6 +1,15 @@
-import { createContext, useEffect, useState } from "react";
 import {
+  createContext,
+  useEffect,
+  useState,
+  ReactNode,
+  useContext,
+} from "react";
+import {
+  GithubAuthProvider,
   GoogleAuthProvider,
+  User,
+  UserCredential,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
@@ -12,37 +21,58 @@ import {
 import { app } from "../firebase/firebase.config";
 import axios from "axios";
 
-export const AuthContext = createContext(null);
+interface AuthContextProps {
+  user: User | null;
+  loading: boolean;
+  createUser: (email: string, password: string) => Promise<UserCredential>;
+  signIn: (email: string, password: string) => Promise<UserCredential>;
+  googleSignIn: () => Promise<UserCredential>;
+  githubSignIn: () => Promise<UserCredential>;
+  updateUserProfile: (name: string, photo: string) => Promise<void>;
+  Logout: () => Promise<void>;
+}
+
+const AuthContext = createContext<AuthContextProps | null>(null);
+
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const githubProvider = new GithubAuthProvider();
 
-const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const createUser = (email, password) => {
+  const createUser = (
+    email: string,
+    password: string
+  ): Promise<UserCredential> => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  const Login = (email, password) => {
+  const signIn = (email: string, password: string): Promise<UserCredential> => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const googleSignin = () => {
+  const googleSignIn = (): Promise<UserCredential> => {
     setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
-  const updateUserProfile = (name, photo) => {
-    return updateProfile(auth.currentUser, {
+  const githubSignIn = (): Promise<UserCredential> => {
+    setLoading(true);
+    return signInWithPopup(auth, githubProvider);
+  };
+
+  const updateUserProfile = (name: string, photo: string): Promise<void> => {
+    return updateProfile(auth?.currentUser as User, {
       displayName: name,
       photoURL: photo,
     });
   };
 
-  const Logout = () => {
+  const Logout = (): Promise<void> => {
     setLoading(true);
     return signOut(auth);
   };
@@ -73,12 +103,13 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  const authInfo = {
+  const authInfo: AuthContextProps = {
     user,
     loading,
     createUser,
-    Login,
-    googleSignin,
+    signIn,
+    googleSignIn,
+    githubSignIn,
     updateUserProfile,
     Logout,
   };
@@ -88,4 +119,12 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export default AuthProvider;
+const useAuth = (): AuthContextProps => {
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
+};
+
+export { AuthProvider, useAuth };

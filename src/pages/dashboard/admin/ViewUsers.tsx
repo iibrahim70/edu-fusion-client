@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 import axios from "axios";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
 
 const ViewUsers = () => {
   const [axiosSecure] = useAxiosSecure();

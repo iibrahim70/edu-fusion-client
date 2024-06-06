@@ -1,35 +1,8 @@
-import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 import SocialLogin from "@/components/SocialLogin";
-import useToast from "@/hooks/useToast";
 import SigninFrom from "@/components/forms/SigninFrom";
 
 const Signin = () => {
-  const { Login } = useAuth();
-  const { showToast } = useToast();
-  const navigate = useNavigate();
-  const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (user) => {
-    Login(user.email, user.password)
-      .then((res) => {
-        navigate(from, { replace: true });
-        showToast("User Signed In Successfully !");
-      })
-      .catch((err) => {
-        showToast(err.message);
-        console.error(err);
-      });
-  };
-
   return (
     <main className="min-h-screen flex justify-center items-center">
       <div className="shadow rounded-md border p-8 w-full max-w-md mx-auto space-y-3.5">

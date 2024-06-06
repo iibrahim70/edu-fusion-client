@@ -1,19 +1,19 @@
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import useAuth from "@/hooks/useAuth";
 import useToast from "@/hooks/useToast";
+import { useAuth } from "@/providers/authProvider";
 
 const SocialLogin = () => {
   const { showToast } = useToast();
-  const { googleSignin } = useAuth();
+  const { googleSignIn, githubSignIn } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
   const handleGoogleSignin = () => {
-    googleSignin()
+    googleSignIn()
       .then((res) => {
         const loggedInUser = res.user;
         navigate(from, { replace: true });
