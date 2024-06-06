@@ -12,22 +12,42 @@ import {
   SelectValue,
   SelectItem,
 } from "../ui/select";
+import { useAuth } from "@/providers/authProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const SignupFrom = () => {
+  const { createUser, updateUserProfile } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
     control,
     watch,
-    reset,
     formState: { errors },
   } = useForm();
 
   const password = watch("password");
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data);
-    reset();
+  const onSubmit = async (data: FieldValues) => {
+    try {
+      await createUser(data?.email, data?.password);
+      await updateUserProfile(data?.fullName, data?.avatar);
+
+      navigate(from, { replace: true });
+      toast.success("User Signed In Successfully!");
+    } catch (err) {
+      if (err instanceof Error) {
+        toast.error(err?.message);
+        console.error(err);
+      } else {
+        toast.error("An unknown error occurred");
+        console.error("An unknown error occurred", err);
+      }
+    }
   };
 
   return (
