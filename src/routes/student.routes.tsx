@@ -15,14 +15,14 @@ const studentPaths = [
     element: <ManageNotes />,
   },
   {
-    label: "Create Testimonial",
-    path: "create-testimonial",
-    element: <CreateTestimonial />,
-  },
-  {
     label: "Create Note",
     path: "create-note",
     element: <CreateNote />,
+  },
+  {
+    label: "Create Testimonial",
+    path: "create-testimonial",
+    element: <CreateTestimonial />,
   },
 ];
 
