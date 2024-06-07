@@ -2,6 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
 
 const NoteFrom = () => {
   const {
@@ -32,9 +33,9 @@ const NoteFrom = () => {
         )}
       </div>
 
-      <div className="space-y-2.5">
+      <div className="flex flex-col space-y-2.5">
         <Label className="font-medium">Description</Label>
-        <Input type="text" {...register("description", { required: true })} />
+        <Textarea rows={5} {...register("description", { required: true })} />
         {errors?.description && (
           <span className="text-red-500 text-sm">Description is required</span>
         )}

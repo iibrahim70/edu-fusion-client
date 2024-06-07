@@ -66,7 +66,7 @@ const TestimonialFrom = () => {
 
       <div className="flex flex-col space-y-2.5">
         <Label className="font-medium">Message</Label>
-        <Textarea rows={6} {...register("review", { required: true })} />
+        <Textarea rows={5} {...register("review", { required: true })} />
         {errors?.review && (
           <span className="text-red-500 text-sm">Please enter your review</span>
         )}
