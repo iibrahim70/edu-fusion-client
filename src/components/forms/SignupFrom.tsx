@@ -55,7 +55,7 @@ const SignupFrom = () => {
       <div className="space-y-2.5">
         <Label className="font-medium">Full Name</Label>
         <Input type="text" {...register("fullName", { required: true })} />
-        {errors?.name && (
+        {errors?.fullName && (
           <span className="text-red-500 text-sm">Name is required</span>
         )}
       </div>

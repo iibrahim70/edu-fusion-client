@@ -43,7 +43,7 @@ const SigninFrom = () => {
       <div className="space-y-2.5">
         <Label className="font-medium">Email</Label>
         <Input type="email" {...register("email", { required: true })} />
-        {errors?.name && (
+        {errors?.email && (
           <span className="text-red-500 text-sm">Enter a valid Email</span>
         )}
       </div>
