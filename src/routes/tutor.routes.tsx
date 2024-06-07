@@ -1,7 +1,6 @@
 import CreateSession from "@/pages/dashboard/tutor/CreateSession";
 import UploadMaterials from "@/pages/dashboard/tutor/UploadMaterials";
 import ViewMaterials from "@/pages/dashboard/tutor/ViewMaterials";
-import ViewNotes from "@/pages/dashboard/tutor/ViewNotes";
 import ViewSessions from "@/pages/dashboard/tutor/ViewSessions";
 
 const tutorPaths = [
@@ -15,11 +14,7 @@ const tutorPaths = [
     path: "view-materials",
     element: <ViewMaterials />,
   },
-  {
-    label: "View Notes",
-    path: "view-notes",
-    element: <ViewNotes />,
-  },
+
   {
     label: "Create Session",
     path: "create-session",

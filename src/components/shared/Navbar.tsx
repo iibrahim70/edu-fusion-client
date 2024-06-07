@@ -2,7 +2,7 @@ import { Button, buttonVariants } from "../ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTheme } from "@/providers/themeProvider";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoMenu, IoClose } from "react-icons/io5";
 import { cn } from "@/lib/utils";
 import {
@@ -18,6 +18,7 @@ import { useAuth } from "@/providers/authProvider";
 const Navbar = () => {
   const navItems = navbarItemsGenerator(mainPaths);
   const { user, Logout } = useAuth();
+  const location = useLocation();
   const [menuOpen, setIsMenuOpen] = useState(false);
   const { setTheme } = useTheme();
 
@@ -37,7 +38,13 @@ const Navbar = () => {
         {/* middle */}
         <div className="max-md:hidden flex justify-between gap-5">
           {navItems?.map((item) => (
-            <Link key={item?.label} to={item?.path as string}>
+            <Link
+              key={item?.label}
+              to={item?.path as string}
+              className={cn(
+                location?.pathname === item?.path && "text-blue-500 font-medium"
+              )}
+            >
               {item?.label}
             </Link>
           ))}
@@ -112,7 +119,12 @@ const Navbar = () => {
                 key={item?.label}
                 to={item?.path as string}
                 onClick={() => setIsMenuOpen(false)}
-                className="px-4 py-2 rounded hover:bg-light-gray dark:hover:bg-jet-gray duration-300 transition-all cursor-pointer"
+                className={cn(
+                  "px-4 py-2 rounded duration-300 transition-all cursor-pointer hover:bg-slate-200/90 dark:hover:bg-black/85",
+
+                  location?.pathname === item?.path &&
+                    "bg-slate-200/90 dark:bg-black/85 font-medium"
+                )}
               >
                 {item?.label}
               </Link>
