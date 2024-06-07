@@ -15,7 +15,10 @@ const ViewSessions = () => {
     data: myclasses = [],
     isLoading,
     refetch,
-  } = useQuery(["myClasses", user?.email], () => fetchMyClasses(user?.email));
+  } = useQuery({
+    queryKey: ["myClasses", user?.email],
+    queryFn: () => fetchMyClasses(user?.email),
+  });
 
   const [classes, setClasses] = useState(null);
   const {
@@ -42,7 +45,7 @@ const ViewSessions = () => {
 
   const fetchMyClasses = async (email) => {
     try {
-      const response = await axiosSecure.get(`/myclasses?email=${email}`);
+      const response = await axios.get(`/myclasses?email=${email}`);
       const data = response.data;
       return data;
     } catch (error) {
@@ -73,18 +76,6 @@ const ViewSessions = () => {
       showToast("Failed to update class!");
     }
   };
-
-  const handleUpdate = (item) => {
-    setIsOpen(true);
-    const data = myclasses.find((data) => data._id === item._id);
-    setClasses(data);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-
-  if (isLoading) return <span className="loading loading-dots loading-md" />;
 
   return (
     <main className="w-full p-20">

@@ -73,7 +73,7 @@ const SignupFrom = () => {
         <Controller
           name="role"
           control={control}
-          rules={{ required: "Please select a role" }}
+          rules={{ required: true }}
           render={({ field }) => (
             <Select onValueChange={field?.onChange}>
               <SelectTrigger>
