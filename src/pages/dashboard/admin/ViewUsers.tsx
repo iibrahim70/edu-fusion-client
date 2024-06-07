@@ -1,18 +1,16 @@
-import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-import axios from "axios";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
+import axios from "axios";
 
 const ViewUsers = () => {
   const [axiosSecure] = useAxiosSecure();
-  const {
-    data: users = [],
-    isLoading,
-    refetch,
-  } = useQuery(["users"], async () => {
-    const res = await axiosSecure.get("/users");
-    return res.data;
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axios.get("https://dressx-server.vercel.app/users");
+      return res.data;
+    },
   });
 
   const handleMakeAdmin = async (user) => {
@@ -77,64 +75,7 @@ const ViewUsers = () => {
 
   if (isLoading) return <span className="loading loading-dots loading-md" />;
 
-  const isButtonDisabled = (role) => {
-    return role === "admin" || role === "instructor";
-  };
-
-  return (
-    <main className="py-20">
-      <h1 className="text-center pb-20">All Users: {users.length}</h1>
-
-      <div className="overflow-x-auto">
-        <table className="table table-zebra">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Make Instructor</th>
-              <th>Make Admin</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.map((user, index) => (
-              <tr key={user._id}>
-                <td>{index + 1}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td className="capitalize">{user.role}</td>
-                <td>
-                  {!isButtonDisabled(user.role) ? (
-                    <button
-                      onClick={() => handleMakeInstructor(user)}
-                      className="primary-button"
-                    >
-                      Instructor
-                    </button>
-                  ) : (
-                    <button className="disabled-button">Instructor</button>
-                  )}
-                </td>
-                <td>
-                  {!isButtonDisabled(user.role) ? (
-                    <button
-                      onClick={() => handleMakeAdmin(user)}
-                      className="primary-button"
-                    >
-                      Admin
-                    </button>
-                  ) : (
-                    <button className="disabled-button">Admin</button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </main>
-  );
+  return <main>View Users</main>;
 };
 
 export default ViewUsers;

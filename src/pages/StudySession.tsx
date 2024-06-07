@@ -4,7 +4,7 @@ import StudySessionCard from "@/components/cards/StudySessionCard";
 
 const StudySession = () => {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["classes"],
+    queryKey: ["courses"],
     queryFn: () =>
       axios
         .get("https://dressx-server.vercel.app/approve-classes")

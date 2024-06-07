@@ -1,5 +1,5 @@
+import { useAuth } from "@/providers/authProvider";
 import { ReactNode } from "react";
-import useAuth from "@/hooks/useAuth";
 import { Navigate, useLocation } from "react-router-dom";
 
 const privateRoute = ({ children }: { children: ReactNode }) => {
