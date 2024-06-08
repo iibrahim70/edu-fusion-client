@@ -16,6 +16,7 @@ import {
   handleMakeTutor,
   handleMakeAdmin,
 } from "@/handlers";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const ViewUsers = () => {
   const [searchText, setSearchText] = useState<string>("");
@@ -73,7 +74,14 @@ const ViewUsers = () => {
                 <td>{index + 1}</td>
 
                 <td className="flex items-center gap-5">
-                  {/* <Avatar img={item?.images[0]} className="size-10" /> */}
+                  <Avatar className="size-14">
+                    <AvatarImage
+                      src={item?.avatar}
+                      alt={item?.fullName}
+                      className="object-cover"
+                    />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
 
                   <div className="flex flex-col items-start gap-1">
                     <p className="whitespace-nowrap">{item?.fullName}</p>
