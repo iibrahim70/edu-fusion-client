@@ -66,3 +66,16 @@
   position: relative;
   bottom: -5px !important;
 }
+
+th,
+td {
+  @apply p-5 text-center cursor-pointer;
+}
+
+th {
+  @apply bg-white dark:bg-black;
+}
+
+tr:nth-child(even) {
+  @apply bg-gray-300/70 dark:bg-black/70;
+}

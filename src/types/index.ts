@@ -15,3 +15,11 @@ export interface IRoute {
 export type TBarItem =
   | { label: string; path: string; children?: TBarItem[] }
   | undefined;
+
+export interface IUser {
+  _id: string;
+  fullName: string;
+  email: string;
+  role: string;
+  avatar: string;
+}
