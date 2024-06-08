@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import Swal from "sweetalert2";
 import axios from "axios";
 import {
   DropdownMenu,
@@ -12,12 +11,15 @@ import { IUser } from "@/types";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { useDebounce } from "use-debounce";
+import {
+  handleMakeStudent,
+  handleMakeTutor,
+  handleMakeAdmin,
+} from "@/handlers";
 
 const ViewUsers = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [debouncedValue] = useDebounce(searchText, 1000);
-  console.log({ searchText });
-  console.log({ debouncedValue });
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["users"],
@@ -35,49 +37,6 @@ const ViewUsers = () => {
       refetch();
     }
   }, [debouncedValue, refetch]);
-
-  const handleMakeAdmin = async (user: IUser) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: `Do You Want To Make ${user?.fullName} An Admin?`,
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Make Admin",
-      cancelButtonText: "Cancel",
-    }).then(async (result) => {
-      if (result?.isConfirmed) {
-        try {
-          await axios.patch(
-            `http://localhost:5000/api/v1/users/update-role/${user._id}`,
-            {
-              role: "admin",
-            }
-          );
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: `${user?.fullName} Is An Admin Now!`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        } catch (error) {
-          // Handle error
-          console.error(error);
-        }
-      }
-    });
-  };
-
-  const handleMakeTutor = async (user: IUser) => {
-    console.log(user);
-  };
-
-  const handleMakeUser = async (user: IUser) => {
-    console.log(user);
-  };
 
   if (isLoading) {
     return <div>loading</div>;
@@ -137,10 +96,21 @@ const ViewUsers = () => {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
-                      <DropdownMenuItem>Student</DropdownMenuItem>
-                      <DropdownMenuItem>Tutor</DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={() => handleMakeStudent(item, refetch)}
+                      >
+                        Student
+                      </DropdownMenuItem>
 
-                      <DropdownMenuItem onClick={() => handleMakeAdmin(item)}>
+                      <DropdownMenuItem
+                        onClick={() => handleMakeTutor(item, refetch)}
+                      >
+                        Tutor
+                      </DropdownMenuItem>
+
+                      <DropdownMenuItem
+                        onClick={() => handleMakeAdmin(item, refetch)}
+                      >
                         Admin
                       </DropdownMenuItem>
                     </DropdownMenuContent>
