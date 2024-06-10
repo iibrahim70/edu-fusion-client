@@ -121,8 +121,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = (): AuthContextProps => {
   const context = useContext(AuthContext);
-  if (!context) {
+
+  if (context === null) {
     throw new Error("useAuth must be used within an AuthProvider");
   }
+
   return context;
 };
