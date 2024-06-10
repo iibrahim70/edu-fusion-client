@@ -1,14 +1,14 @@
 import Hero from "@/components/Hero";
-import StudySession from "@/components/StudySession";
-import Tutors from "@/components/Instructors";
+import Courses from "@/components/Courses";
+import Instructors from "@/components/Instructors";
 import Testimonials from "@/components/Testimonials";
 
 const Home = () => {
   return (
     <main className="space-y-10 lg:space-y-20 mb-10 lg:mb-20">
       <Hero />
-      <StudySession />
-      <Tutors />
+      <Courses />
+      <Instructors />
       <Testimonials />
     </main>
   );

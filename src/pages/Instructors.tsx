@@ -1,10 +1,10 @@
-import TutorCard from "@/components/cards/InstructorCard";
 import { useQuery } from "@tanstack/react-query";
+import InstructorCard from "@/components/cards/InstructorCard";
 import axios from "axios";
 
-const Tutors = () => {
+const Instructors = () => {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["tutors"],
+    queryKey: ["instructors"],
     queryFn: () =>
       axios
         .get("https://dressx-server.vercel.app/instructors")
@@ -27,9 +27,9 @@ const Tutors = () => {
 
   return (
     <main className="section-wrapper py-10">
-      <TutorCard data={data} />
+      <InstructorCard data={data} />
     </main>
   );
 };
 
-export default Tutors;
+export default Instructors;

@@ -1,7 +1,9 @@
-const InstructorCard = ({ data }) => {
+import { IInstructor } from "@/types";
+
+const InstructorCard = ({ data }: { data: IInstructor[] }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-      {data?.map((item) => (
+      {data?.map((item: IInstructor) => (
         <div key={item._id} className="shadow rounded-md border">
           <img
             className="h-[220px] w-full object-cover rounded-t-md"
