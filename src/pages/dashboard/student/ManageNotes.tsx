@@ -6,7 +6,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { handleDeleteNote } from "@/handlers";
 
 const ManageNotes = () => {
   return (
@@ -42,17 +41,9 @@ const ManageNotes = () => {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem
-                      onClick={() => handleUpdateNote(item, refetch)}
-                    >
-                      Update
-                    </DropdownMenuItem>
+                    <DropdownMenuItem>Update</DropdownMenuItem>
 
-                    <DropdownMenuItem
-                      onClick={() => handleDeleteNote(item, refetch)}
-                    >
-                      Delete
-                    </DropdownMenuItem>
+                    <DropdownMenuItem>Delete</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </td>
