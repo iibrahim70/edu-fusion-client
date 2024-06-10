@@ -1,7 +1,7 @@
-import CreateSession from "@/pages/dashboard/tutor/CreateSession";
+import CreateSession from "@/pages/dashboard/tutor/CreateCourse";
 import UploadMaterials from "@/pages/dashboard/tutor/UploadMaterials";
 import ViewMaterials from "@/pages/dashboard/tutor/ViewMaterials";
-import ViewSessions from "@/pages/dashboard/tutor/ViewSessions";
+import ViewSessions from "@/pages/dashboard/tutor/ViewCourses";
 
 const tutorPaths = [
   {

@@ -1,6 +1,6 @@
 import CourseForm from "@/components/forms/CourseForm";
 
-const CreateSession = () => {
+const CreateCourse = () => {
   return (
     <main>
       <CourseForm />
@@ -8,4 +8,4 @@ const CreateSession = () => {
   );
 };
 
-export default CreateSession;
+export default CreateCourse;
