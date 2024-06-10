@@ -26,7 +26,7 @@ const ViewUsers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/api/v1/users?searchTerm=${debouncedValue}&limit=10`
+        `https://edu-fusiion.vercel.app/api/v1/users?searchTerm=${debouncedValue}&limit=10`
       );
       return res?.data?.data;
     },
