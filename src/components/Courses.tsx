@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import StudySessionCard from "./cards/CourseCard";
+import CourseCard from "./cards/CourseCard";
 import SectionTitle from "./SectionTitle";
 
-const StudySession = () => {
+const Courses = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["classes"],
     queryFn: () =>
@@ -36,9 +36,9 @@ const StudySession = () => {
         description="Discover courses to boost your skills. Each session offers actionable insights and an opportunity to purchase."
       />
 
-      <StudySessionCard data={slicedData} />
+      <CourseCard data={slicedData} />
     </section>
   );
 };
 
-export default StudySession;
+export default Courses;

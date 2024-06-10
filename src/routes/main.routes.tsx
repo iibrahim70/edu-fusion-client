@@ -2,7 +2,7 @@ import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactUs";
 import Home from "@/pages/Home";
 import Courses from "@/pages/Courses";
-import Tutors from "@/pages/Tutors";
+import Tutors from "@/pages/Instructors";
 
 const mainPaths = [
   {

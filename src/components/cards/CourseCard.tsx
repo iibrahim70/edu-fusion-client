@@ -2,14 +2,15 @@ import { BsFillPeopleFill } from "react-icons/bs";
 import { Button } from "../ui/button";
 import useAdmin from "@/hooks/useAdmin";
 import useInstructor from "@/hooks/useInstructor";
+import { ICourse } from "@/types";
 
-const CourseCard = ({ data }) => {
+const CourseCard = ({ data }: { data: ICourse[] }) => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10">
-      {data?.map((item) => (
+      {data?.map((item: ICourse) => (
         <div key={item?._id} className="shadow rounded-md border">
           <img
             className="h-[250px] w-full rounded-t-md"
