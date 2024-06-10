@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "@/providers/AuthProvider";
+import { useAuth } from "@/providers/authProvider";
 
 const SigninFrom = () => {
   const [showPassword, setShowPassword] = useState(false);
