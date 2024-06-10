@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export const handleUpdateNote = async (user: IUser, refetch: () => void) => {
+export const handleUpdateNote = async (user: IUser) => {
   Swal.fire({
     title: "Are you sure?",
     text: `Make ${user?.fullName} an Admin?`,
@@ -22,7 +22,6 @@ export const handleUpdateNote = async (user: IUser, refetch: () => void) => {
             role: "admin",
           }
         );
-        refetch();
         toast.success(`${user?.fullName} is now an Admin!`);
       } catch (error) {
         console.error("Error updating user role:", error);
