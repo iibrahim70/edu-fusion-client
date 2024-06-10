@@ -12,8 +12,8 @@ const Hero = () => {
           together to inspire and achieve academic excellence. Join us and be a
           part of a dynamic learning community.
         </p>
-        <Link to="/classes" className={buttonVariants()}>
-          Get Classes
+        <Link to="/courses" className={buttonVariants()}>
+          Get Courses
         </Link>
       </div>
     </section>

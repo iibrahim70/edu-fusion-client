@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import StudySessionCard from "@/components/cards/StudySessionCard";
+import CourseCard from "@/components/cards/CourseCard";
 
-const StudySession = () => {
+const Courses = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["courses"],
     queryFn: () =>
@@ -27,9 +27,9 @@ const StudySession = () => {
 
   return (
     <main className="section-wrapper py-10">
-      <StudySessionCard data={data} />
+      <CourseCard data={data} />
     </main>
   );
 };
 
-export default StudySession;
+export default Courses;

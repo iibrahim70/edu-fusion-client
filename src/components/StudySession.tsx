@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import StudySessionCard from "./cards/StudySessionCard";
+import StudySessionCard from "./cards/CourseCard";
 import SectionTitle from "./SectionTitle";
 
 const StudySession = () => {
