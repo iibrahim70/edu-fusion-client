@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { ITestimonial } from "@/types";
+import Rating from "./Rating";
 
 const Testimonials = () => {
   const { isLoading, error, data } = useQuery({
@@ -74,12 +75,12 @@ const Testimonials = () => {
                   className="size-14 object-cover rounded-full"
                 />
 
-                <div>
+                <div className="space-y-1.5">
                   <p className="text-base font-bold">
                     {item?.userId?.fullName}
                   </p>
 
-                  {/* rating */}
+                  <Rating value={item?.rating} />
                 </div>
               </div>
             </div>

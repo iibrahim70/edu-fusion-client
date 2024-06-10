@@ -11,7 +11,7 @@ const Rating = ({ value }: { value: number }) => {
       stars.push(
         <svg
           key={i}
-          className="size-7 text-yellow-500"
+          className="size-[22px] text-yellow-500"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ const Rating = ({ value }: { value: number }) => {
       stars.push(
         <div className="relative" key="partial">
           <svg
-            className="size-7 text-gray-300"
+            className="size-[22px] text-gray-300"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ const Rating = ({ value }: { value: number }) => {
           </svg>
 
           <svg
-            className="absolute top-0 left-0 size-7 text-yellow-500"
+            className="absolute top-0 left-0 size-[22px] text-yellow-500"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +52,7 @@ const Rating = ({ value }: { value: number }) => {
       stars.push(
         <svg
           key={i + fullStars + 1}
-          className="size-7 text-gray-300"
+          className="size-[22px] text-gray-300"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
