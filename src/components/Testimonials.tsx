@@ -6,14 +6,15 @@ import SectionTitle from "./SectionTitle";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import { ITestimonial } from "@/types";
 
 const Testimonials = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["testimonials"],
     queryFn: () =>
       axios
-        .get("https://dressx-server.vercel.app/reviews")
-        .then((res) => res.data),
+        .get("https://edu-fusiion.vercel.app/api/v1/testimonials")
+        .then((res) => res?.data?.data),
   });
 
   if (isLoading)
@@ -60,21 +61,23 @@ const Testimonials = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {data?.map((item) => (
+        {data?.map((item: ITestimonial) => (
           <SwiperSlide key={item?._id} className="shadow rounded-md border p-5">
             <div className="space-y-5">
-              <p className="text-justify line-clamp-5">{item?.review}</p>
+              <p className="text-justify line-clamp-4">{item?.review}</p>
               <hr className="w-[90%] mx-auto border-black/50" />
 
               <div className="flex items-center justify-center gap-5">
                 <img
-                  src={item?.image}
-                  alt={item?.name}
+                  src={item?.userId?.avatar}
+                  alt={item?.userId?.fullName}
                   className="size-14 object-cover rounded-full"
                 />
 
                 <div>
-                  <p className="text-base font-bold">{item?.name}</p>
+                  <p className="text-base font-bold">
+                    {item?.userId?.fullName}
+                  </p>
 
                   {/* rating */}
                 </div>
