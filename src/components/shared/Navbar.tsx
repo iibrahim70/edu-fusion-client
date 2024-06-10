@@ -13,7 +13,7 @@ import {
 } from "../ui/dropdown-menu";
 import mainPaths from "@/routes/main.routes";
 import navbarItemsGenerator from "@/helpers/navbarItemsGenerator";
-import { useAuth } from "@/providers/AuthProvider";
+import { useAuth } from "@/providers/authProvider";
 
 const Navbar = () => {
   const navItems = navbarItemsGenerator(mainPaths);

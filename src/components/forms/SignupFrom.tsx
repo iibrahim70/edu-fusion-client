@@ -12,7 +12,7 @@ import {
   SelectValue,
   SelectItem,
 } from "../ui/select";
-import { useAuth } from "@/providers/AuthProvider";
+import { useAuth } from "@/providers/authProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
