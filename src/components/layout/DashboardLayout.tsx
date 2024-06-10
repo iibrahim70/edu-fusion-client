@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { IoClose, IoMenu } from "react-icons/io5";
 
 const user = {
-  role: userRole?.STUDENT, // Set the user role statically
+  role: userRole?.ADMIN, // Set the user role statically
 };
 
 let sidebarItems: TBarItem[];
