@@ -5,7 +5,7 @@ import ErrorPage from "@/pages/ErrorPage";
 import routeGenerator from "@/helpers/routesGenerator";
 import mainPaths from "./main.routes";
 import adminPaths from "./admin.routes";
-import tutorPaths from "./tutor.routes";
+import instructorPaths from "./instructor.routes";
 import studentPaths from "./student.routes";
 import Signup from "@/pages/auth/Signup";
 import Signin from "@/pages/auth/Signin";
@@ -26,9 +26,9 @@ const router = createBrowserRouter([
     children: routeGenerator(adminPaths),
   },
   {
-    path: "/tutor/dashboard",
+    path: "/instructor/dashboard",
     element: <DashboardLayout />,
-    children: routeGenerator(tutorPaths),
+    children: routeGenerator(instructorPaths),
   },
   {
     path: "/student/dashboard",

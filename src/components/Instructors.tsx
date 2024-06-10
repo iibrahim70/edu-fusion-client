@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import SectionTitle from "./SectionTitle";
-import TutorCard from "./cards/TutorCard";
+import InstructorCard from "./cards/InstructorCard";
 
-const Tutors = () => {
+const Instructors = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["tutors"],
     queryFn: () =>
@@ -32,13 +32,13 @@ const Tutors = () => {
   return (
     <section className="section-wrapper">
       <SectionTitle
-        title="Meet Our Expert Tutors"
-        description="Get to know our experienced tutors who will support you on your learning journey."
+        title="Meet Our Instructors"
+        description="Get to know our experienced instructors who will support you on your learning journey."
       />
 
-      <TutorCard data={slicedData} />
+      <InstructorCard data={slicedData} />
     </section>
   );
 };
 
-export default Tutors;
+export default Instructors;
