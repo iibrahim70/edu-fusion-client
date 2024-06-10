@@ -1,47 +1,47 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import {
+  useGetUsersQuery,
+  useUpdateUserRoleMutation,
+} from "@/redux/services/userApi";
+import { Button } from "@/components/ui/button";
+import { IUser } from "@/types";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { useDebounce } from "use-debounce";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
-import { IUser } from "@/types";
-import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
-import { useDebounce } from "use-debounce";
 import {
   handleMakeStudent,
-  handleMakeTutor,
   handleMakeAdmin,
+  handleMakeInstructor,
 } from "@/handlers";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const ViewUsers = () => {
   const [searchText, setSearchText] = useState<string>("");
   const [debouncedValue] = useDebounce(searchText, 1000);
 
-  const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["users"],
-    queryFn: async () => {
-      const res = await axios.get(
-        `https://edu-fusiion.vercel.app/api/v1/users?searchTerm=${debouncedValue}&limit=10`
-      );
-      return res?.data?.data;
-    },
-    enabled: !!debouncedValue || searchText === "", // Enable the query if debouncedValue is not empty or searchText is empty
+  const [updateUserRole] = useUpdateUserRoleMutation();
+  const { isLoading, error, data } = useGetUsersQuery({
+    searchTerm: debouncedValue,
   });
 
-  useEffect(() => {
-    if (debouncedValue !== undefined) {
-      refetch();
-    }
-  }, [debouncedValue, refetch]);
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    );
 
-  if (isLoading) {
-    return <div>loading</div>;
-  }
+  if (error)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Error...
+      </div>
+    );
 
   return (
     <main className="space-y-3.5">
@@ -69,7 +69,7 @@ const ViewUsers = () => {
           </thead>
 
           <tbody>
-            {data?.map((item: IUser, index: number) => (
+            {data?.data?.map((item: IUser, index: number) => (
               <tr key={item?._id} className="text-sm">
                 <td>{index + 1}</td>
 
@@ -100,24 +100,26 @@ const ViewUsers = () => {
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
                       <Button className="rounded-full" size="sm">
-                        Toggle Role
+                        Action
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                       <DropdownMenuItem
-                        onClick={() => handleMakeStudent(item, refetch)}
+                        onClick={() => handleMakeStudent(item, updateUserRole)}
                       >
                         Student
                       </DropdownMenuItem>
 
                       <DropdownMenuItem
-                        onClick={() => handleMakeTutor(item, refetch)}
+                        onClick={() =>
+                          handleMakeInstructor(item, updateUserRole)
+                        }
                       >
-                        Tutor
+                        Instructor
                       </DropdownMenuItem>
 
                       <DropdownMenuItem
-                        onClick={() => handleMakeAdmin(item, refetch)}
+                        onClick={() => handleMakeAdmin(item, updateUserRole)}
                       >
                         Admin
                       </DropdownMenuItem>

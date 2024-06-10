@@ -1,9 +1,11 @@
 import { IUser } from "@/types";
 import Swal from "sweetalert2";
-import axios from "axios";
 import toast from "react-hot-toast";
 
-export const handleMakeAdmin = async (user: IUser, refetch: () => void) => {
+export const handleMakeAdmin = async (
+  user: IUser,
+  updateUserRole: (arg: { userId: string; role: string }) => Promise<any>
+) => {
   Swal.fire({
     title: "Are you sure?",
     text: `Make ${user?.fullName} an Admin?`,
@@ -16,13 +18,7 @@ export const handleMakeAdmin = async (user: IUser, refetch: () => void) => {
   }).then(async (result) => {
     if (result?.isConfirmed) {
       try {
-        await axios.patch(
-          `http://localhost:5000/api/v1/users/update-role/${user?._id}`,
-          {
-            role: "admin",
-          }
-        );
-        refetch();
+        await updateUserRole({ userId: user._id, role: "admin" });
         toast.success(`${user?.fullName} is now an Admin!`);
       } catch (error) {
         console.error("Error updating user role:", error);
