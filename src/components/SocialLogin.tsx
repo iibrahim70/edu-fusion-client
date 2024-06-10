@@ -1,4 +1,4 @@
-import { useAuth } from "@/providers/authProvider";
+import { useAuth } from "@/providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
