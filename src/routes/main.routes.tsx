@@ -1,7 +1,7 @@
 import AboutUs from "@/pages/AboutUs";
 import ContactUs from "@/pages/ContactUs";
 import Home from "@/pages/Home";
-import StudySession from "@/pages/StudySession";
+import Courses from "@/pages/Courses";
 import Tutors from "@/pages/Tutors";
 
 const mainPaths = [
@@ -11,9 +11,9 @@ const mainPaths = [
     element: <Home />,
   },
   {
-    label: "Study Sessions",
-    path: "/study-sessions",
-    element: <StudySession />,
+    label: "Courses",
+    path: "/courses",
+    element: <Courses />,
   },
   {
     label: "Tutors",

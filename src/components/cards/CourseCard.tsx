@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import useAdmin from "@/hooks/useAdmin";
 import useInstructor from "@/hooks/useInstructor";
 
-const StudySessionCard = ({ data }) => {
+const CourseCard = ({ data }) => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
 
@@ -48,4 +48,4 @@ const StudySessionCard = ({ data }) => {
   );
 };
 
-export default StudySessionCard;
+export default CourseCard;
