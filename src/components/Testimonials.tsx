@@ -1,22 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { useGetTestimonialsQuery } from "@/redux/services/testimonialApi";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import SectionTitle from "./SectionTitle";
+import { ITestimonial } from "@/types";
+import Rating from "./Rating";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { ITestimonial } from "@/types";
-import Rating from "./Rating";
 
 const Testimonials = () => {
-  const { isLoading, error, data } = useQuery({
-    queryKey: ["testimonials"],
-    queryFn: () =>
-      axios
-        .get("https://edu-fusiion.vercel.app/api/v1/testimonials")
-        .then((res) => res?.data?.data),
-  });
+  const { isLoading, error, data } = useGetTestimonialsQuery(undefined);
 
   if (isLoading)
     return (
@@ -28,7 +21,7 @@ const Testimonials = () => {
   if (error)
     return (
       <div className="flex items-center justify-center min-h-screen">
-        Error: {error?.message}
+        Error:
       </div>
     );
 
@@ -62,7 +55,7 @@ const Testimonials = () => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {data?.map((item: ITestimonial) => (
+        {data?.data?.map((item: ITestimonial) => (
           <SwiperSlide key={item?._id} className="shadow rounded-md border p-5">
             <div className="space-y-5">
               <p className="text-justify line-clamp-4">{item?.review}</p>

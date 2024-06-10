@@ -1,29 +1,25 @@
 import { IUser } from "@/types";
 import Swal from "sweetalert2";
-import axios from "axios";
 import toast from "react-hot-toast";
 
-export const handleMakeTutor = async (user: IUser, refetch: () => void) => {
+export const handleMakeInstructor = async (
+  user: IUser,
+  updateUserRole: (arg: { userId: string; role: string }) => Promise<any>
+) => {
   Swal.fire({
     title: "Are you sure?",
-    text: `Make ${user?.fullName} an Tutor?`,
+    text: `Make ${user?.fullName} an Instructor?`,
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, Make Tutor",
+    confirmButtonText: "Yes, Make Instructor",
     cancelButtonText: "Cancel",
   }).then(async (result) => {
     if (result?.isConfirmed) {
       try {
-        await axios.patch(
-          `http://localhost:5000/api/v1/users/update-role/${user?._id}`,
-          {
-            role: "tutor",
-          }
-        );
-        refetch();
-        toast.success(`${user?.fullName} is now an Tutor!`);
+        await updateUserRole({ userId: user._id, role: "instructor" });
+        toast.success(`${user?.fullName} is now an Instructor!`);
       } catch (error) {
         console.error("Error updating user role:", error);
         toast.error("Failed to update role. Try again.");
