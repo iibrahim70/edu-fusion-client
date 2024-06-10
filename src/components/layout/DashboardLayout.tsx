@@ -3,27 +3,27 @@ import { TBarItem } from "@/types";
 import sidebarItemsGenerator from "@/helpers/sidebarItemsGenerator";
 import { userRole } from "@/constants";
 import adminPaths from "@/routes/admin.routes";
-import tutorPaths from "@/routes/tutor.routes";
+import instructorPaths from "@/routes/instructor.routes";
 import studentPaths from "@/routes/student.routes";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { IoClose, IoMenu } from "react-icons/io5";
 
 const user = {
-  role: userRole?.TUTOR, // Set the user role statically
+  role: userRole.STUDENT, // Set the user role statically
 };
 
 let sidebarItems: TBarItem[];
 
 switch (user!.role) {
-  case userRole?.ADMIN:
-    sidebarItems = sidebarItemsGenerator(adminPaths, userRole?.ADMIN);
+  case userRole.ADMIN:
+    sidebarItems = sidebarItemsGenerator(adminPaths, userRole.ADMIN);
     break;
-  case userRole?.TUTOR:
-    sidebarItems = sidebarItemsGenerator(tutorPaths, userRole?.TUTOR);
+  case userRole.Instructor:
+    sidebarItems = sidebarItemsGenerator(instructorPaths, userRole.Instructor);
     break;
-  case userRole?.STUDENT:
-    sidebarItems = sidebarItemsGenerator(studentPaths, userRole?.STUDENT);
+  case userRole.STUDENT:
+    sidebarItems = sidebarItemsGenerator(studentPaths, userRole.STUDENT);
     break;
 
   default:

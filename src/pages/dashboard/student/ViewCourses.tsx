@@ -1,5 +1,5 @@
 const ViewCourses = () => {
-  return <div>ViewCourses</div>;
+  return <main>ViewCourses</main>;
 };
 
 export default ViewCourses;

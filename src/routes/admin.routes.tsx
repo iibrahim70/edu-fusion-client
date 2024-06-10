@@ -1,5 +1,5 @@
 import ViewUsers from "@/pages/dashboard/admin/ViewUsers";
-import ViewSessions from "@/pages/dashboard/admin/ViewCourses";
+import ViewCourses from "@/pages/dashboard/admin/ViewCourses";
 import ViewMaterials from "@/pages/dashboard/admin/ViewMaterials";
 
 const adminPaths = [
@@ -9,9 +9,9 @@ const adminPaths = [
     element: <ViewUsers />,
   },
   {
-    label: "View Sessions",
-    path: "view-sessions",
-    element: <ViewSessions />,
+    label: "View Courses",
+    path: "view-courses",
+    element: <ViewCourses />,
   },
   {
     label: "View Materials",

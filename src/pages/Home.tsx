@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 import StudySession from "@/components/StudySession";
-import Tutors from "@/components/Tutors";
+import Tutors from "@/components/Instructors";
 import Testimonials from "@/components/Testimonials";
 
 const Home = () => {

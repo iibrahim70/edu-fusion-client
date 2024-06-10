@@ -16,8 +16,8 @@ const mainPaths = [
     element: <Courses />,
   },
   {
-    label: "Tutors",
-    path: "/tutors",
+    label: "Instructors",
+    path: "/instructors",
     element: <Tutors />,
   },
   {

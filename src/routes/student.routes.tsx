@@ -1,13 +1,13 @@
 import CreateNote from "@/pages/dashboard/student/CreateNote";
 import CreateTestimonial from "@/pages/dashboard/student/CreateTestimonial";
 import ManageNotes from "@/pages/dashboard/student/ManageNotes";
-import ViewSessions from "@/pages/dashboard/student/ViewSessions";
+import ViewCourses from "@/pages/dashboard/student/ViewCourses";
 
 const studentPaths = [
   {
-    label: "View Sessions",
-    path: "view-sessions",
-    element: <ViewSessions />,
+    label: "View Courses",
+    path: "view-courses",
+    element: <ViewCourses />,
   },
   {
     label: "Manage Notes",
